@@ -129,9 +129,39 @@ void task05(){
 
   printf("Rezultat drugog bacanja: %d, %d, %d \n", k1, k2, k3);
 
+  //pow(n,s)=> se koristi da se digne neki broj na odredjeni stepen
+  //n-broj koji dižemo
+  //s-stepen
+  int d=pow(2,3);
+  printf("Dva na treci stepen je: %d \n", d);
+
+}
+
+
+//TASK-6
+void task06(){
+
+  int a,q,k;
+  int suma=0;
+  int clan;
+
+  printf("Unesite a: \n");
+  scanf("%d", &a);
+  printf("Unesite q: \n");
+  scanf("%d",&q);
+  printf("Unesite k: \n");
+  scanf("%d",&k);
+
+  for(int i=0;i<k;i++){
+    clan=a*pow(q,i);
+    suma+=clan;
+  }
+
+  printf("Suma prvih k članova je: %d, a K-ti član je: %d \n", suma,clan);
+
 }
 
 int main(){
-  task05();
+  task06();
   return 0;
 }
