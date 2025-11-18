@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+//ova biblioteka mi treba za sve naprednije matematičke operacije pr. Koren
+#include <math.h>
 
 /* 
 int main(){
@@ -55,9 +57,47 @@ void task02(){
   printf("Zbir: %f \n", a+b);
   printf("Razlika: %f \n", a-b);
 
+  //sqrt(promenljiva)-za koren od broja
+  //sqrt vraća tip double, čak i ako je a tipa float ili int.
+  printf("Koren: %f \n", sqrt(a));
+
+}
+
+
+//Task-3
+
+void task03(){
+
+  //char- se stavlja za caracter(karakter) npr. Slovo-(%c)
+  //Karakter možemo izraziti kao karakter(%c) ili kao broj(%d)
+  char a;
+
+  printf("Unesite slovo: \n");
+  scanf("%c", &a);
+
+  printf("ASCII vrednost unetog karakter %c je: %d \n", a, a);
+}
+
+//Task-4
+
+void task04(){
+  char veliko_slovo;
+
+  printf("Unesite veliko slovo: \n");
+  scanf("%c", &veliko_slovo);
+
+  if(veliko_slovo >= 'A' && veliko_slovo <= 'Z'){
+
+    char malo_slovo=veliko_slovo+('a' - 'A');
+    
+    printf("Odgovarajuće malo slovo je: %c \n",malo_slovo);
+
+  }else{
+    printf("Niste uneli malo slovo \n");
+  }
 }
 
 int main(){
-  task02();
+  task04();
   return 0;
 }
