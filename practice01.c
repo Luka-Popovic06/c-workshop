@@ -2,6 +2,8 @@
 #include <stdlib.h>
 //ova biblioteka mi treba za sve naprednije matematičke operacije pr. Koren
 #include <math.h>
+//ovo nam treba za vreme
+#include <time.h>
 
 /* 
 int main(){
@@ -97,7 +99,39 @@ void task04(){
   }
 }
 
+
+//TASK-5
+void task05(){
+
+  //`time_t t;` – pravi promenljivu u kojoj će biti vreme (broj sekundi od 1.1.1970.)
+  //time(&t)-ovako pristupamo toj promenljivoj(tom vremenu)
+  time_t t;
+  //`srand(time(&t));` – postavlja *seed* za generator slučajnih brojeva.
+  srand(time(&t));
+  //Ovo znači: **svaki put kad pokreneš program, `rand()` će davati druge brojeve**.  
+  //Da nema ovoga, svako pokretanje bi imalo iste rezultate.
+
+  int k1, k2, k3;
+
+  k1=rand()%6+1;
+  k2=rand()%12+1;
+  k3=rand()%20+1;
+
+  printf("Rezultat prvog bacanja: %d, %d, %d \n", k1, k2, k3);
+
+  k1=rand()%6;//daje: 0 1 2 3 4 5
+  // ++k1;- ovo prvo povecava, pa ispise broj
+  k1++;//pomera na 1-6
+  k2=rand()%12;
+  k2++;
+  k3=rand()%20;
+  k3++;
+
+  printf("Rezultat drugog bacanja: %d, %d, %d \n", k1, k2, k3);
+
+}
+
 int main(){
-  task04();
+  task05();
   return 0;
 }
