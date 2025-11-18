@@ -14,7 +14,6 @@ int main(){
 
 
 //TASK-1
-
 void task01(){ //void znači da funkcija ne vraća nikakvu vrednost
   int a;//promenljiva / tipa int (celobrojni tip) / integer
   int b;
@@ -42,7 +41,6 @@ void task01(){ //void znači da funkcija ne vraća nikakvu vrednost
 
 
 //TASK-2
-
 void task02(){
   //Kreiraju se dve promenljive tipa float (brojevi sa decimalama).
   //Primer vrednosti: 3.5, 7.2, -1.0.
@@ -67,7 +65,6 @@ void task02(){
 
 
 //Task-3
-
 void task03(){
 
   //char- se stavlja za caracter(karakter) npr. Slovo-(%c)
@@ -81,7 +78,6 @@ void task03(){
 }
 
 //Task-4
-
 void task04(){
   char veliko_slovo;
 
@@ -161,7 +157,22 @@ void task06(){
 
 }
 
+//Task-7
+void task07() {
+    int total;
+    printf("Unesite broj sekundi:\n");
+    scanf("%d", &total);
+
+    int sekundi = total % 60;//sekunde % 60 → koliko ostane sekundi kada izbacimo minute
+    int minuti = (total / 60) % 60;//minuti % 60 → koliko ostane minuta kada izbacimo sate
+    int sati = total / 3600;
+
+    printf("Sati:\t%d\nMinuti:\t%d\nSekunde:\t%d\n",
+           sati, minuti, sekundi);
+}
+
+
 int main(){
-  task06();
+  task07();
   return 0;
 }
