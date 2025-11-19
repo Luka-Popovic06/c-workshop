@@ -170,9 +170,20 @@ void task07() {
     printf("Sati:\t%d\nMinuti:\t%d\nSekunde:\t%d\n",
            sati, minuti, sekundi);
 }
+void task08() {
+    time_t t;
+    srand(time(&t));
+    int max,min;
+    printf("Unesite broj od koga počinje interval:\n");
+    scanf("%d", &min);
+    printf("Unesite broj do koga ide interval:\n");
+    scanf("%d",&max);
+    int random_number = rand() % (max - min + 1) + min;
+    printf("Random broj od %d do %d je: %d\n",min,max, random_number);
+}
 
 
 int main(){
-  task07();
+  task08();
   return 0;
 }
