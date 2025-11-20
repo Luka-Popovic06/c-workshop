@@ -339,3 +339,41 @@ void task15(){
   printf("Bravo, pogodiliste broj! \n");
 }
 
+//TASK-16
+void task16(){
+  int ocena;
+  int suma_ocena=0;
+  int broj_ocena=0;
+  double prosek;
+
+  while(1){
+    printf("Unesite ocenu: \n");
+    scanf("%d", &ocena);
+
+    //ocena == 0
+    if(!ocena){
+      break;
+    }
+
+    if(ocena < 6 || ocena > 10){
+      printf("Unos nije validan.\n");
+      continue;
+    }
+    suma_ocena += ocena;
+    broj_ocena++;
+  }
+
+  //broj_ocena == 0
+  if(!broj_ocena){
+      printf("Nije uneta ni jedna ocena!\n");
+      return;
+  }  
+
+  //ovo se zove kastovanje 
+  //kada pretvaramo intiger u double tako sto jedan broj pomnozimi sa 1.0
+  prosek = suma_ocena * 1.0 / broj_ocena;
+
+  printf("Prosecna ocena je: %.2f", prosek);
+}
+
+
