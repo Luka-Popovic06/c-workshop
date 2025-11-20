@@ -234,3 +234,41 @@ void task11(){
 }
 
 
+//TASK-12
+void task12(){
+  int mesec, godina;
+  printf("Unesite mesec i godinu\n");
+  scanf("%d %d", &mesec, &godina);
+
+  int broj_dana_u_mesecu;
+
+  switch(mesec){
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12:
+        broj_dana_u_mesecu=31;
+        break;
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+        broj_dana_u_mesecu=30;
+        break;
+    case 2:
+        if((godina % 4 ==0 && godina % 100 != 0) || godina % 400 == 0){
+          broj_dana_u_mesecu=29;
+        }else {
+          broj_dana_u_mesecu=28;
+        }
+        break;
+    default:
+        printf("Pogresno ste uneli mesec!\n");   
+        return; 
+  }
+  printf("Broj dana u mesecu je: %d\n", broj_dana_u_mesecu);
+}
+
