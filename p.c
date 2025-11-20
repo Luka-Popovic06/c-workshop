@@ -323,3 +323,19 @@ void task14(){
 }
 
 
+//TASK-15
+void task15(){
+  time_t t;
+  srand(time(&t));
+  int random_br=rand()%10+1;
+  int uneti_br;
+  int broj_pokusaja=1;
+  do {
+    printf("Unesite %d. broj:",broj_pokusaja);
+    scanf("%d", &uneti_br);
+    broj_pokusaja++;
+  } while(uneti_br != random_br);
+
+  printf("Bravo, pogodiliste broj! \n");
+}
+
