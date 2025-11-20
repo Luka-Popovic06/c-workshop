@@ -272,3 +272,16 @@ void task12(){
   printf("Broj dana u mesecu je: %d\n", broj_dana_u_mesecu);
 }
 
+//TASK-13
+void task13(){
+  int b;
+  printf("Unesite broj:\n");
+  scanf("%d", &b);
+
+  while(b%10==0){
+    b/=10;
+  }
+
+  printf("Broj sa uklonjenim nulama je: %d \n", b);
+}
+
