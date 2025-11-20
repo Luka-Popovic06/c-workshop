@@ -200,3 +200,16 @@ void task09(){
 }
 
 
+//TASK-10
+//Argumenti u funkciji se nazivaju formalni elementi, mogu da ih imam formalan broj
+void task10(int c1,int c2){
+  if(c1 > c2){
+    printf("Najveci dvocifren broj sastavljen od obe cifre je: %d\n", c1*10+c2);
+  }else if(c2 > c1){
+    printf("Najveci dvocifren broj sastavljen od obe cifre je: %d\n", c2*10+c1);
+  }else{
+    printf("Uneli ste dve iste cifre\n");
+  }
+  
+}
+
