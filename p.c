@@ -377,3 +377,37 @@ void task16(){
 }
 
 
+//Task-17***
+void task17(){
+    int br;
+    printf("Unesite broj:\n");
+    scanf("%d", &br);
+
+    int cifra;
+    int hvatac_br = 0;
+    int rezultat = 0;
+    int brojac = 0;
+
+    // Hvatamo svaku drugu cifru (od desne)
+    while(br > 0){
+        cifra = br % 10;
+
+        if(brojac == 0){
+            hvatac_br = hvatac_br * 10 + cifra;
+            brojac = 1;
+        } else {
+            brojac = 0;
+        }
+
+        br /= 10;
+    }
+
+    // hvatac_br je obrnut – sada ga vraćamo
+    while(hvatac_br > 0){
+        rezultat = rezultat * 10 + (hvatac_br % 10);
+        hvatac_br /= 10;
+    }
+
+    printf("Dobijeni broj je: %d\n", rezultat);
+}
+
