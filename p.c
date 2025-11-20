@@ -213,3 +213,24 @@ void task10(int c1,int c2){
   
 }
 
+//TASK-11
+void task11(){
+  int trocifren_br;
+  printf("Unesite trocifren broj\n");
+  scanf("%d", &trocifren_br);
+  int c1,c2,c3;
+  c1=trocifren_br/100;
+  c2=(trocifren_br%100)/10;
+  c3=trocifren_br%10;
+  if(c2>c3 && c2>c1){
+    printf("Da, srednji broj je veci od druga dva\n");
+  }else if(c2<c3 || c2<c1){
+    printf("Ne, srednji broj nije veci od druga dva\n");
+  }else if(c2==c3 && c2==c1){
+    printf("Brojevi su jednaki\n");
+  }else{
+    printf("Jedan od dva brja je jednak sa srednjim brojem\n");
+  }
+}
+
+
