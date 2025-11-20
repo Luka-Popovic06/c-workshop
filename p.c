@@ -411,3 +411,33 @@ void task17(){
     printf("Dobijeni broj je: %d\n", rezultat);
 }
 
+//TASK-18
+void task18(){
+  int n;
+  printf("Unesite prost broj:\n");
+  scanf("%d", &n);
+
+  if(n <= 1){
+    printf("Broj nije prost!\n");
+    return;
+  }
+  if(n == 2){
+    printf("Broj 2 je prost!\n");
+    return;
+  }
+  //ceil() ===> se koristi za zaokruzivanje
+  for(int i=2; i <= ceil(sqrt(n)); i++){
+    if(n % i == 0){
+      printf("Broj %d. nije prost broj!\n", n);
+      return;
+    }
+  }
+  printf("Broj %d je prost!\n",n);
+}
+
+
+int main(){
+  //task10(5,2); kada unosimo ovako direktno elemente u f-ju to se zove barkodovanje
+  task18();
+  return 0;
+}
