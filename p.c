@@ -170,6 +170,8 @@ void task07() {
     printf("Sati:\t%d\nMinuti:\t%d\nSekunde:\t%d\n",
            sati, minuti, sekundi);
 }
+
+//TASK-8
 void task08() {
     time_t t;
     srand(time(&t));
@@ -183,7 +185,18 @@ void task08() {
 }
 
 
-int main(){
-  task08();
-  return 0;
+//TASK-9
+void task09(){
+  int broj;
+  printf("Unesite broj:\n");
+  scanf("%d", &broj);
+  //Modularno deljenje uvek vraca ostatak
+  //4 % 2 = 0 , 3 % 2 = 1
+  //Ukoliko imamo jednu liniju programskog koda posle if,for netrebaju nam {}
+  if(broj % 2 == 0)
+  printf("Broj je paran\n");
+  else
+  printf("Broj je neparan\n");
 }
+
+
