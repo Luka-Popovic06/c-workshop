@@ -285,3 +285,41 @@ void task13(){
   printf("Broj sa uklonjenim nulama je: %d \n", b);
 }
 
+//TASK-14
+void task14(){
+  int n;// broj brojrva
+  printf("Unesite prirodan broj n: ");
+  scanf("%d", &n);
+
+  if(n <= 0){
+    printf("Niste uneli prirodan broj!\n");
+    return;
+  }
+
+  int broj;
+  int max_br=0;
+  int max_cifra_stotina=0;
+
+  printf("Pocinjemo sa unosom n celih brojeva:\n");
+
+  for(int i=1; i <= n; i++){
+
+    printf("Unesite nam %d. broj: ", i);
+    scanf("%d", &broj);
+
+    //123456 ---> 123456 / 100 = 1234 % 10 = 4  ==> Ovako se dobija cifra stotina
+    //broj = 458 → cifra stotina = 4
+    //broj = 9823 → cifra stotina = 8
+
+    int pom= broj / 100;
+    int cifra_stotina=pom % 10;
+
+    if(cifra_stotina > max_cifra_stotina){
+      max_cifra_stotina=cifra_stotina;
+      max_br=broj;
+    }
+  }
+  printf("Broj sa maksimalnom cifrom stotina je: %d \n", max_br);
+}
+
+
