@@ -478,3 +478,35 @@ void task20(){
   }
 }
 
+//***TASK-NZD-NZS
+
+int nzd(int a, int b){
+  //12, 6 --->6 NZD
+  //(uslov) ? izraz1 : izraz2
+  //TERNARNI OPERATOR
+  int min = (a > b) ? b : a;
+  for(int i=min; i >= 1; i--){
+    if((a % i == 0) && (b % i ==0))
+        return i;
+  }
+  return 1;
+}
+int nzs(int a, int b){
+  // 24, 16 ---> 48
+  // 12, 6 -----> 12
+
+  int min= (a > b) ? a : b;
+  for(int i=min; i <= a * b; i++){
+    if((i % a == 0) && (i % b == 0))
+       return i;
+  }
+
+  return 1;
+}
+
+int main(){
+  //task10(5,2); kada unosimo ovako direktno elemente u f-ju to se zove barkodovanje
+  //printf("NZD je: %d", nzd(12,6));
+  task20();
+  return 0;
+}
