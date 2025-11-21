@@ -180,6 +180,7 @@ void task08() {
     scanf("%d", &min);
     printf("Unesite broj do koga ide interval:\n");
     scanf("%d",&max);
+    //rand() % (max - min + 1) + min
     int random_number = rand() % (max - min + 1) + min;
     printf("Random broj od %d do %d je: %d\n",min,max, random_number);
 }
@@ -435,9 +436,25 @@ void task18(){
   printf("Broj %d je prost!\n",n);
 }
 
+//TASK-19
+void task19(){
+  //samo kad unosimo varijablu nam ne treba vrednost nje
+  int broj;
+  printf("Unesite broj\n");
+  scanf("%d", &broj);
+  int s,d,j;
+  s=broj/100;
+  d=(broj/10)%10;
+  j=broj % 10;
+  //ovde nam treba vrednost promenljive
 
-int main(){
-  //task10(5,2); kada unosimo ovako direktno elemente u f-ju to se zove barkodovanje
-  task18();
-  return 0;
+  int amstrongovBroj=0;
+  amstrongovBroj=pow(s,3)+pow(d,3)+pow(j,3);
+
+  if(broj==amstrongovBroj){
+    printf("Dobili smo Amstrongov Broj, broj %d je jednak sa %d\n", broj, amstrongovBroj);
+  }else{
+    printf("Nismo dobili Amstrongov broj\n");
+  }
 }
+
