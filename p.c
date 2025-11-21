@@ -458,3 +458,23 @@ void task19(){
   }
 }
 
+//TASK-20
+void task20(){
+  //Broj je PALINDROM ako se cita isto spreda kao i od pozadi
+  int broj;
+  printf("Unesite br.\n");
+  scanf("%d", &broj);
+  int obrnut_broj=0;
+  int kopija_broja=broj;
+  
+  while(kopija_broja != 0){
+    obrnut_broj = (obrnut_broj * 10) + (kopija_broja % 10);
+    kopija_broja = kopija_broja / 10;
+  }
+  if(broj == obrnut_broj){
+    printf("Palindrom je\n");
+  }else{
+    printf("Nije palindrom\n");
+  }
+}
+
