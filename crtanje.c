@@ -120,3 +120,33 @@ void task35(int n){
   }
 }
 
+//9.task
+void task36(){
+  // n! - faktorijal = n * (n-1) * (n-2)*... * 3 * 2 * 1
+  //i! = 1 * 2*... * i
+  // 0! = 1
+  int x, n, p = 1, s = 0 , f = 1;
+  printf("Unesite vrednost x: ");
+  scanf("%d", &x);
+  printf("Unesite vrednost n: ");
+  scanf("%d", &n);
+
+  for(int i = 0;i <= n; i++){
+    for(int j=1; j <=i; j++)
+    {
+      p*= x;
+    }
+    for (int j = 1; j <= i; j++) {
+        f *= j;
+    }
+    s +=p / f;
+    p = f = 1;
+  }
+
+  printf("Suma reda je %d", s);
+}
+
+int main(){
+  task36();
+  return 0;
+}
