@@ -79,3 +79,14 @@ void task32(int n){
   
 }
 
+//6.task
+void task33(int n){
+  for (int i = 0; i < n; i++)
+  {
+    for(int j = 0; j < n - 1; j++){
+      printf("*");
+    }
+    printf("\n");
+  }
+}
+
