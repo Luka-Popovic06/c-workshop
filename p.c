@@ -659,3 +659,43 @@ void task26(){
   printf("Zbir brojeva koji se nalaze izmedju istih slova je: %d\n", rezultat);
 }
 
+//TASK-27
+//Kolokvijum
+
+#include <stdio.h>
+#include <limits.h>
+#include <math.h>
+
+int task27(int arg){
+    int rezultat = 0;
+    int cifra;
+    int maxCifra = INT_MIN;
+    int broj = arg;
+    int stepen = 0;
+
+    // 1. Trazenje najvece cifre
+    while (arg != 0) {
+        cifra = arg % 10;
+        if (cifra > maxCifra)
+            maxCifra = cifra;
+        arg /= 10;
+    }
+
+    // 2. Kreiranje broja bez maksimalne cifre
+    while (broj != 0) {
+        cifra = broj % 10;
+        if (cifra != maxCifra) {
+            rezultat = rezultat + cifra * pow(10, stepen);
+            stepen++;
+        }
+        broj /= 10;
+    }
+
+    return rezultat;
+}
+
+int main(){
+    printf("Broj sa uklonjenom maksimalnom cifrom je: %d\n", task27(123321));
+    //task26();
+    return 0;
+}
