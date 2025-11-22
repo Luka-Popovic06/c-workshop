@@ -567,4 +567,21 @@ Izlaz: abd
   }
  }
 
- 
+ //TASK-23
+ /* Napisati program koji ucitava tekst i ispisuje ga, 
+ ali tako da svaka rec pocinje velikim slovom. */
+
+void task23(){
+  char ch;
+  char prev=' ';
+
+  while((ch = getchar()) != '\n'){
+    if( prev == ' ' && ch >= 'a' && ch <= 'z'){
+      ch=ch-('a'-'A');// a - A ===> 32 (a > A) (97 > 35)
+    }
+    putchar(ch);
+      prev=ch;
+  }
+
+}
+
