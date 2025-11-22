@@ -90,3 +90,18 @@ void task33(int n){
   }
 }
 
+//7.task
+//Ugnjezdena petlja
+//Ispisati sve trocifrene brojeve cije su sve cifre razlicite.
+void task34(){
+  for(int i = 1; i <=9; i++){
+    for(int j = 0; j <= 9 ; j++ ){
+      for(int k = 0; k <=9; k++){//prva sa radom krece ova
+        if(i != j && i!=k && j!=k){
+          printf("%d%d%d\n", i, j, k);
+        }
+      }
+    }
+  }
+}
+
