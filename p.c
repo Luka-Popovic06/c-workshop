@@ -607,3 +607,23 @@ void task24(){
   printf("Maksimalni broj je %d \n", max);
 }
 
+//TASK-25
+//Napisati program koji ucitava recenicu i ispisuje broj reci u toj recenici.
+void task25(){
+  char ch;
+  char prev= ' ';
+  int broj_reci=0;
+
+  while((ch=getchar()) != '\n'){
+    if(ch == ' ' && prev != ' '){
+      broj_reci++;
+    }
+    prev=ch;
+  }
+
+  if(prev != ' ')
+     broj_reci++;
+
+  printf("Broj reci u recenici je: %d \n", broj_reci);
+}
+
