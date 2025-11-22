@@ -1,10 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 //ova biblioteka mi treba za sve naprednije matematičke operacije pr. Koren
 #include <math.h>
+
 //ovo nam treba za vreme
 #include <time.h>
 
+//je biblioteka u C-u koja sadrži funkcije za rad sa 
+//karakterima (slovima, ciframa, razmacima…).
+#include <ctype.h>
+/*
+1.isalpha(c) ===> Proverava da li je karakter slovo.
+2.isdigit(c) ===> Proverava da li je cifra (0–9).
+3. isspace(c) ===> Proverava da li je karakter razmak, tab, novi red…
+4. toupper(c) ===> Pretvara malo slovo → veliko.
+5. tolower(c) ===> Pretvara veliko slovo → malo.
+*/
+#include <limits.h>
+/*je standardna C biblioteka koja sadrži granične vrednosti (limite) za 
+sve osnovne tipove podataka u C-u.
+1.INT_MAX ===> Najveća vrednost koju int može da sadrži.
+2.INT_MIN ===> Najmanja vrednost za int.
+3.CHAR_MAX ===> Najveća vrednost za char.
+4.CHAR_MIN ===> Najmanja vrednost za char.
+5.LONG_MAX, LONG_MIN ===> Granice za long.
+6.USHRT_MAX ===> Najveća vrednost za unsigned short.
+*/
 /* 
 int main(){
   printf("Hello world!\n");
@@ -504,9 +526,23 @@ int nzs(int a, int b){
   return 1;
 }
 
-int main(){
-  //task10(5,2); kada unosimo ovako direktno elemente u f-ju to se zove barkodovanje
-  //printf("NZD je: %d", nzd(12,6));
-  task20();
-  return 0;
+//TASK-21
+/*
+Napisati program koji ucitava karaktere i ispisuje ih na konzolu, samo razmake ('') menja za donju crtu (_).
+Primer: Ulaz: The quick brown fox jumped over the lazy dog.
+Izlaz: The_quick_brown_fox_jumped_over_the_lazy_dog.
+*/
+
+void task21(){
+  char ch;
+
+  //getchar() — uzima jedan karakter sa tastature
+  while((ch = getchar()) != '\n'){
+    if(ch == ' '){
+      putchar('_');
+    }else{
+      putchar(ch);//putchar() — ispisuje jedan karakter na ekran
+    }
+  }
 }
+
