@@ -627,3 +627,35 @@ void task25(){
   printf("Broj reci u recenici je: %d \n", broj_reci);
 }
 
+//TASK-26
+
+/* 8. (1 Kolokvijum 2017. Grupa: 1; Zadatak: 2;) Koristeci naredbu while i 
+funkciju getchar() za citanje karaktera obraditi ulaznu sekvencu slova i cifara, 
+i izracunati zbir brojeva koji se nalaze izmedu
+istih slova, pri cemu se odgovarajuce malo i veliko slovo smatraju istim (a i A su ista slova).
+Primer: Ulaz: ab23Bnh46zu37uj1jht21m
+Izlaz: 61
+Objasjenje: brojevi koji se nalaze izmedu istih slova su 23, 37 i 1, u zbiru 61. */
+
+void task26(){
+  char ch;
+  int br = 0;
+  int rezultat = 0;
+  char prev_ch = '\n';
+
+  while((ch = getchar()) != '\n'){
+    if(isdigit(ch)){
+      br = br * 10 + (ch - '0');
+    }else {
+      ch=toupper(ch);
+      if(ch == prev_ch){
+        rezultat += br;
+      }
+      br=0;
+      prev_ch = ch;
+    }
+  }
+
+  printf("Zbir brojeva koji se nalaze izmedju istih slova je: %d\n", rezultat);
+}
+
