@@ -105,3 +105,18 @@ void task34(){
   }
 }
 
+//8.task
+/*Naci i ispisati sve savrsene brojeve u intervalu [1, n]. Savrseni broj je onaj tiji je zbir
+svih pravih delilaca jednak samom broju, npr. 6 = 1 + 2 + 3.*/
+void task35(int n){
+  for(int i = 2; i<=n; i++){ // pravi interval
+    int suma=0;
+    for(int j = 1; j < i; j++){//ovde trazimo prave delioce
+      if(i % j == 0)
+         suma += j;
+    }
+    if(suma == i)
+       printf("Broj %d jeste savrsen broj!\n", i);
+  }
+}
+
