@@ -546,3 +546,25 @@ void task21(){
   }
 }
 
+//TASK-22
+/*
+Napisati program koriscenjem while petlje koji iz ulaznog niza karaktera izbacuje 
+sva dupla slova, odnosno ako dva ista slova stoje jedno pored drugog, ispisuje samo jedno.
+Primer: Ulaz: aabbdd
+Izlaz: abd
+*/
+ void task22(){
+  char slovo;
+  char prev=getchar();
+  putchar(prev);
+  while((slovo=getchar()) != '\n'){
+    if(slovo == prev){
+      continue;//restartuje petlju, pocinje petlju ispocetka
+    }else{
+      putchar(slovo);
+      prev=slovo;
+    }
+  }
+ }
+
+ 
