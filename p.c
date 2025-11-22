@@ -585,3 +585,25 @@ void task23(){
 
 }
 
+//TASK-24
+//Napisati program koji nalazi najveci broj u tekstu. 
+//Tekst se nalazi u jednoj liniji.
+void task24(){
+  char ch;
+  int br=0;
+  int max=0;
+  
+  while((ch = getchar()) != '\n'){
+    if(ch >= '0' && ch <= '9'){
+      //'0' ->48, '1' -> 49, '2' -> 56, '2' - '0'
+      br=br * 10 + (ch - '0');
+      if(br > max)
+          max=br;
+      continue;
+    }
+    br=0;
+  }
+
+  printf("Maksimalni broj je %d \n", max);
+}
+
