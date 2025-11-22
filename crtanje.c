@@ -62,3 +62,20 @@ void task31(int n){
     printf("\n");
   }
 }
+//5.task
+void task32(int n){
+  for (int r = 0; r < n; r++)
+  {
+    for (int c = 0; c < n; c++)
+    {
+      if( r == c || r > c){
+        printf("*");
+      }
+      
+    }
+    
+    printf("\n");
+  }
+  
+}
+
