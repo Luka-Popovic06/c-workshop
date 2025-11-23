@@ -197,4 +197,42 @@ void task38(){
   }
 }
 
-/
+//TASK-39
+//neopadajuci poredak ---> [1,2,3,4,4,4,5,5]
+/*Šta je Bubble sort?
+
+Bubble sort je algoritam koji sortira niz poređenjem susednih 
+elemenata i zamenom mesta ako nisu u dobrom redosledu.
+
+Radi kao "mehurić" — najveći brojevi se "popnu" na kraj 
+niza posle svake iteracije.*/
+
+int je_prost(int n){
+  if(n <= 1)
+     return 0;
+  for (int i = 2; i * i <= n; i++)
+  {
+    if(n % i == 0 )
+       return 0;
+  }
+  return 1;
+  
+}
+
+int pom(int arg){
+
+  int cifra1 = arg % 10;
+  int cifra2 = (arg / 10) % 10;
+
+  int kandidat1 = cifra1 * 10 + cifra2;
+  int kandidat2 = cifra2 * 10 + cifra1;
+
+  if(je_prost(kandidat1) && je_prost(kandidat2)){
+    return kandidat1 > kandidat2 ? kandidat1 : kandidat2;
+  }
+}
+
+int main(){
+  task38();
+  return 0;
+}
