@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-
+#include <ctype.h>
+#include <math.h>
+#define MAX_N 50
 
 // (0, 0) ==> 0-ta vrsta , 0-ta kolona, (0, 1) ==> nulta vrsta prva kolona
 // (1, 0) ==> 1 vrsta , 0 kolona, (1, 1) ==> prva vrsta, prava kolona
@@ -172,7 +173,28 @@ void task37(int a, int b){
   printf("Rezultat je %d\n", rezultat);
 }
 
-int main(){
-  task37(1234567,467);
-  return 0;
+//Nizovi
+//[1, 2, 3, 4, 5]
+//int a[n] = {1, 2, 3, 4, 5, 0, 0, 0, 0, 0} n---dimenzija niza
+//a[0] == 1
+
+//TASK-38
+void task38(){
+  int n;
+  printf("Unesite duzinu niza n:");
+  scanf("%d", &n);
+
+  int a[n]; //govorimo c-u koliko nam mesta treba u nizu
+
+  for(int i=0; i<n; i++){
+    printf("Unesite vrednost %d. elementa!", i);
+    scanf("%d", &a[i]);
+  }
+  printf("Niz se sastoji od elemenata\n");
+
+  for(int j = 0; j < n; j++){
+    printf("%d ", a[j]);
+  }
 }
+
+/
