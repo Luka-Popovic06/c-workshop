@@ -1,5 +1,5 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     '/Users/lukapopovic/Desktop/c-workshop/crtanje'
+binary-path:     '/Users/lukapopovic/Desktop/c-workshop/cn'
 relocations:     []
 ...
