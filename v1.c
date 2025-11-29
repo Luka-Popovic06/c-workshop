@@ -239,3 +239,70 @@ void zadatak4(){
   printf("Rezultat je %.4f", količnik);
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+3. (7p) Uvodimo aritmetičku operaciju sabiranja bez pamćenja na sledeći način: za
+dva broja sabiraju se njihove jedinice, njihove desetice, njihove stotine itd. i rezultat
+se gradi tako što se poslednje cifre tih rezultata poređaju jedna do druge u istom
+redosledu u kom su bile i u originalnim brojevima. Npr: sabiranje bez pamćenja za
+brojeve 356 i 9948 treba da da rezultat 9294 (cifre jedinica: 6+8=14, dakle cifra
+jedinica rezultata je 4; cifre desetica: 5+4=9, dakle cifra desetica rezultata je 9;
+cifre stotina: 3+9=12, dakle cifra stotina rezultata je 2; cifre hiljada 0+9=9, dakle
+cifra hiljada rezultata je 9)
+Napisati program u kome se unose brojevi sve dok se ne unese 0. Uzimamo da je
+početni rezultat 0. Svaki put kada se unese novi broj, potrebno je prethodni rezultat
+sabrati bez pamćenja sa novim brojem i ispisati rezultat nakon sabiranja. Rezultat
+nakon sabiranja se kao takav "odvodi" u sledeću iteraciju. Uzeti da korisnik unosi
+isključivo prirodne brojeve.
+Primer: Ulaz: 675 676 798 65
+Izlaz: 675 241 939 994
+*/
+
+int sabiranje_bez_pamcenja(int br1, int br2){
+  int rezultat=0;
+  int br_cifre=0;
+  int stepen=0;
+  int veci_broj=br1 > br2 ? br1 : br2;
+
+  while (veci_broj > 0)
+  {
+    br_cifre++;
+    veci_broj /=10;
+  }
+
+  for(int i = 0; i <= br_cifre; i++){
+    int cifra1 = br1 % 10;
+    int cifra2 = br2 % 10;
+    int suma_dve_cifre = cifra1 + cifra2;
+    rezultat = rezultat + (suma_dve_cifre % 10) * pow(10,stepen);
+
+    stepen++;
+    br1 /= 10;
+    br2 /= 10;
+  }
+
+  return rezultat;
+}
+
+void zadatak5(){
+  int br;
+  int rezultat=0;
+  int kopija = 0;
+  for (int i = 1; i != 0; i++)
+  {
+    printf("Unesite %d. broj", i);
+    scanf("%d", &br);
+    if(br == 0) break;
+    //if(kopija != br)
+     rezultat=sabiranje_bez_pamcenja(rezultat,br);
+  }
+
+  printf("%d", rezultat);
+  
+}
+
+int main(){
+  zadatak5();
+  return 0;
+}
