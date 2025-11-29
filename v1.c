@@ -165,3 +165,77 @@ void zadatak3(){
 
 }
 
+////////////////////////////////////////////////////////////////////////////////////////
+
+/*(7p) Definišemo razdvojiv broj kao broj koji se može zapisati kao zbir neka 
+dva različita fibonačijeva
+broja. Npr. 18=13+5 je razdvojiv, 12 nije razdvojiv. 
+Napisati program koji učitava broj n i zatim n prirodnih brojeva i 
+izračunava količnik zbira svih unetih razdvojivih brojeva i najmanjeg od svih unetih
+nerazdvojivih brojeva. Količnik pri ispisu zaokružiti na 4 decimale.
+Primer: Ulaz: 5
+18 47 241 111 12
+Izlaz: 25.5000
+Pojašnjenje: Razdvojivi su: 18=13+5, 47=34+13 i 241 = 233+8. 
+Najmanji nerazdvojiv je 12, količnik je
+(18+47+241)/12 = 306/12 = 25.5000. */
+
+//FIBONAČIJEV NIZ:
+//F0=0 , F1=1, F2= F0 + F1 = 1, F3=2, F4= F2 + F3 = 3, F5 = 5, F6=8 ....
+//Fn= Fn - 1 + Fn - 2
+//n = 34
+//broj = j + (broj - j)
+//uzme se jedan komad i pitam se kolko broju fali da stigne do tog nekog broja
+
+int fibonacijev4(int n){
+  if(n == 0 || n == 1)
+     return 1;
+
+  int fi = 0;
+  int fj = 1;
+
+  while (fi + fj < n)
+  {
+    int tmp=fi;
+    fi = fj;
+    fj= tmp + fi;
+  }
+  if(fi + fj == n)
+     return 1;
+
+  return 0;
+}
+
+void zadatak4(){
+  int n;
+  printf("Unesite broj n: ");
+  scanf("%d", &n);
+
+  int suma_razdvojivih = 0;
+  int min_nerazdvojivih = 1000000;
+
+  for(int i = 1; i <= n; i++){
+    int br;
+    printf("Unesite %d. broj: ", i);
+    scanf("%d", &br);
+
+    int razdvojiv = 0;
+
+    for(int j = 0; j <= br; j++){
+      if(fibonacijev4(j) && fibonacijev4(br - j) && j != br - j ){
+        suma_razdvojivih += br;
+        razdvojiv = 1;
+        break;
+      }
+    }
+    if(!razdvojiv){
+      if(br < min_nerazdvojivih){
+        min_nerazdvojivih = br;
+      }
+    }
+  }
+  double količnik = 0;
+  količnik = suma_razdvojivih * 1.0 / min_nerazdvojivih;
+  printf("Rezultat je %.4f", količnik);
+}
+
