@@ -70,7 +70,47 @@ void zadatak1(){
   }
 
 }
-int main(){
-  zadatak1();
-  return 0;
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+/* 1. (6p) Napisati funkciju pom(int min, int max, int num) koja proverava da li se sve
+cifre prosleđenog broja num nalaze u intervalu između min i max (uključujući i
+brojeve min i max).
+U glavnom programu učitati četiri broja: min, max, low i high; i, uz pomoć funkcije
+pom, ispisati koliko ima brojeva u intervalu od low do high čije su sve cifre između
+min i max.
+Primer: Ulaz: 2 4 10 50
+Izlaz: 22 23 24 32 33 34 42 43 44 */
+
+int pom2(int min, int max, int number){
+  int provera = 1;
+
+  while(number > 0){
+  int cifra = number % 10;
+
+  if(min > cifra || cifra > max){
+     provera = 0;
+     break;  
+  }
+
+  number /= 10;
+  }
+
+  return provera;
 }
+
+void zadatak2(){
+  int min, max, low, high;
+  printf("Unesite min i max: ");
+  scanf("%d %d", &min ,&max);
+  printf("Unesite low i high: ");
+  scanf("%d %d", &low, &high);
+  for(int i = low; i < high; i++){
+    if(pom2(min,max,i))
+       printf("%d\n", i);
+
+    continue;
+  }
+
+}
+
