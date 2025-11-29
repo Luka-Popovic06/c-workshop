@@ -114,3 +114,54 @@ void zadatak2(){
 
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
+/*1. (6p) Napisati funkciju int pom(int x, int min, int max) koja vraća broj koji se dobije kad se iz broja x
+izbace sve cifre iz intervala min, max.
+U glavnom programu učitati dva prirodna broja: a i b (a<=b), i dve cifre: min i max (min<=max). Pomoću
+funkcije pom ispisati sve brojeve iz intervala od a do b koji ne sadrže nijednu cifru iz intervala od min do
+max. Svi zadati intervali u zadatku uključuju i donju i gornju graničnu vrednost.
+Primer: Ulaz: 10 50 3 6
+Izlaz: 10 11 12 17 18 19 20 21 22 27 28 29 */
+
+int pom3(int x, int min, int max){
+
+  int number=0;
+  int stepen=0;
+  
+  while(x > 0 ){
+    int cifra= x % 10;
+    if(cifra < min || max < cifra){
+       number = number + cifra * pow(10, stepen);
+       stepen++;
+    }
+    x /= 10;
+  }
+
+  return number;
+
+}
+
+void zadatak3(){
+  int a, b, min, max;
+  printf("Napisite dva prirodna broja: ");
+  scanf("%d %d", &a,&b);
+  printf("Unesite min i max: ");
+  scanf("%d %d", &min,&max);
+
+  if(a > b){
+   printf("a mora da bude a <= b\n");
+    return;
+  }else if(min > max){
+    printf("min ne moze da bude vece od max!!!\n");
+    return;
+  }
+
+  for(int i = a; i <= b; i++){
+    if(pom3(i,min,max) >= a && pom3(i,min,max) <= b)
+      printf("%d \n", i);
+
+  }
+
+}
+
