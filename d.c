@@ -47,3 +47,39 @@ void isPrime(){
   printf("Broj %d. je prost broj\n", br);
   
 }
+/*
+3.Fibonačijev broj:
+Fibonacijev (Fibonacci) broj je deo Fibonacijevog niza.
+Svaki broj je zbir prethodna dva broja.
+F0=0 , F1=1, F2= F0 + F1 = 1, F3=2, F4= F2 + F3 = 3, F5 = 5, F6=8 ....
+*/
+void isFibonacci(){
+  printf("Unesi broj:\n");
+  int br;
+  int br1=1;
+  int br2=2;
+  int fibonacijev_br=3;
+
+  scanf("%d",&br);
+  if(br == 0 || br == 1 || br == 2){
+    printf("Broj %d. jeste u Fibonacijevom nizu.\n", br);
+    return;
+  }
+     
+  while (fibonacijev_br <= br)
+  {
+    if(fibonacijev_br == br){
+      printf("Broj %d. jeste u Fibonacijevom nizu.\n", br);
+      return;
+    }
+    br1=br2;
+    br2=fibonacijev_br;
+    fibonacijev_br=br1+br2;
+  }
+  printf("Broj %d. nije u Fibonacijevom nizu.\n", br);
+  
+}
+int main(){
+  isFibonacci();
+  return 0;
+}
