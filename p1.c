@@ -601,6 +601,7 @@ void task24(){
           max=br;
       continue;
     }
+    //continue ne dozvoljava da se br=0 vraca petlju opet na pocetak
     br=0;
   }
 
