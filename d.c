@@ -79,7 +79,29 @@ void isFibonacci(){
   printf("Broj %d. nije u Fibonacijevom nizu.\n", br);
   
 }
+
+/*
+4.Napisati program koji od unetog broja N ispisuje broj koji ima cifre kao broj N, samo u obnutom redosledu.
+Primetiti da obrnuti broj nema vodecih nula.
+N>0
+*/
+void reverseNumber(){
+  int br;
+  printf("Unesi broj N:\n");
+  scanf("%d",&br);
+  int reversedNumber = 0;
+  while (br>0)
+  {
+    if(br==0){
+      continue;
+      br /= 10;
+    }
+    reversedNumber=reversedNumber * 10 + (br%10);
+    br /= 10;
+  }
+  printf("Obrnut broj je: %d\n", reversedNumber);
+}
 int main(){
-  isFibonacci();
+  reverseNumber();
   return 0;
 }
