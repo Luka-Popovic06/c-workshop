@@ -144,7 +144,7 @@ int removeNumber(int arg,int k){
   }
   return number;
 }
-void pom(){
+void pom1(){
   int br1,br2,br3;
   printf("Unesite 1. broj:\n");
   scanf("%d",&br1);
@@ -157,7 +157,39 @@ void pom(){
 
   printf("Rezultat je: %d\n",result);
 }
+
+/*
+7.Napisati funkciju pom(int arg) koja vraca najvecu razliku izmedu susednih 
+cifara argumenta (pretpostavimo da argument uvek ima bar dve cifre). 
+Zatim ispisati sve brojeve iz intervala koji unosi korisnik a kojima je najveca 
+razlika izmedu cifara manja od 3.
+*/
+int pom2(int arg){
+  int result=0;
+  while (arg >= 10)
+  {
+    int cf1=arg%10;
+    arg/=10;
+    int cf2=arg%10;
+    
+    int razlika=abs(cf1-cf2);
+    result=razlika>result ? razlika : result;
+  }
+
+  return result;
+}
+
+void task1(){
+  int n,m;
+  scanf("%d%d", &n, &m);
+  for (int i = n; i <= m; i++)
+  {
+    if(pom2(i) < 3)
+       printf("%d\n", i);
+  }
+  
+}
 int main(){
-  pom();
+  pom1();
   return 0;
 }
