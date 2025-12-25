@@ -101,7 +101,29 @@ void reverseNumber(){
   }
   printf("Obrnut broj je: %d\n", reversedNumber);
 }
+/*
+5.Napisati program kojim se izbacuje svako pojavijivanje cifre CF-cifra iz datog broja N.
+*/
+
+void removeDigit(){
+  int br, CF;
+  printf("Unesite broj:\n");
+  scanf("%d", &br);
+  printf("Unesite cifru koju hocete da izbacite:\n");
+  scanf("%d", &CF);
+  int result=0;
+  int stepen=0;
+  while (br>0)
+  {
+    if(br%10 != CF){
+      result=result+((br%10)*pow(10,stepen));
+      stepen++;
+    }
+    br/=10;
+  }
+  printf("Broj sa izbacenom cifrom je: %d", result);
+}
 int main(){
-  reverseNumber();
+  removeDigit();
   return 0;
 }
