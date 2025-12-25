@@ -103,6 +103,7 @@ void reverseNumber(){
 }
 /*
 5.Napisati program kojim se izbacuje svako pojavijivanje cifre CF-cifra iz datog broja N.
+(0<=cf<=9)
 */
 
 void removeDigit(){
@@ -123,7 +124,40 @@ void removeDigit(){
   }
   printf("Broj sa izbacenom cifrom je: %d", result);
 }
+
+/*
+6.Napisati funkciju pom(int/arg) int ky koja vraca broj dobijen kada se iz 
+argumenta arg uklone sve cifre manje od k (vratiti nula ako se izbace sve cifre).
+ Sabrati brojeve koje vraca ova funkcija za 3 broja koja korisnik unese, i za
+ k=5
+*/
+int removeNumber(int arg,int k){
+  int number=0;
+  int stepen=0;
+  while (arg>0)
+  {
+    if(arg%10 > k){
+      number=number+((arg%10)*pow(10,stepen));
+      stepen++;
+    }
+    arg/=10;
+  }
+  return number;
+}
+void pom(){
+  int br1,br2,br3;
+  printf("Unesite 1. broj:\n");
+  scanf("%d",&br1);
+  printf("Unesite 2. broj:\n");
+  scanf("%d",&br2);
+  printf("Unesite 3. broj:\n");
+  scanf("%d",&br3);
+
+  int result=removeNumber(br1,5)+removeNumber(br2,5)+removeNumber(br3,5);
+
+  printf("Rezultat je: %d\n",result);
+}
 int main(){
-  removeDigit();
+  pom();
   return 0;
 }
