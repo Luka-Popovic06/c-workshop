@@ -189,7 +189,50 @@ void task1(){
   }
   
 }
+
+/*
+8.Napisati funkciju int pom(int num, int(min, int max) koja vraca broj u kome 
+su cifre broja num koje su van intervala [min, max] zamenjene najblizom cifrom 
+iz intervala. Ako je cifra unutar intervala, ostaje nepromenjena. 
+U glavnom programu citati cetiri broja: 
+min, max, a i b, gde je a <= bi 0 <= min <= max <= 9. 
+Zatim, za svaki broj u intervalu od a do b, pozvati funkciju pom i ispisati broj 
+posle zamene.
+Primer: Ulaz: 3 5 130 140
+Izlaz: 333 333 333 333 334 335 335 335 335 335 343
+*/
+
+int pom3(int num,int min, int max){
+  int result=0;
+  int stepen=0;
+ 
+    while (num > 0)
+    {
+      if(min <= num%10 && num%10 <= max){
+      result=result + ((num%10)* pow(10,stepen));
+      }else if(min > num%10){
+      result=result + (min* pow(10,stepen));
+      }else if(max < num%10){
+      result=result + (max * pow(10,stepen));
+      }
+      stepen++;
+      num/=10;
+    }
+  return result;
+}
+
+void task2(){
+  int min,max,a,b;
+  int result=0;
+  scanf("%d%d%d%d",&min,&max,&a,&b);
+  for (int i = a; i <= b; i++)
+  {
+    result=pom3(i,min,max);
+    printf("%d\n", result);
+  }
+  
+}
 int main(){
-  pom1();
+  task2();
   return 0;
 }
