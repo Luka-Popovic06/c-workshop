@@ -322,6 +322,36 @@ void removeParenthesesContent(){
   }
   
 }
+
+/*
+13.Koristeći naredbu while i funkciju getchar() za čitanje karaktera obraditi ulaznu
+sekvencu slova i cifara, i izračunati zbir brojeva koji se nalaze izmedu dva 
+slova koji su u ASCII taebli udaljeni najvise do 2 mesta (uključujući 2).
+ab11cnh23zk37j1jht21m
+*/
+int isDig(char c){
+  return c<='9' && c>='0' ? 1 : 0;
+}
+
+void task3(){
+  char c;
+  int last = '1';
+  int br = 0;
+  int suma = 0;
+while ((c = getchar()) != '\n')
+{
+  if(isDig(c) == 1){
+    br=br*10+(c -'0');
+  }else{
+    if(abs(last - c) <= 2){
+      suma += br;
+    }
+    br = 0;
+    last = c;
+  }
+}
+printf("%d", suma);
+}
 int main(){
   task3();
   return 0;
