@@ -283,7 +283,27 @@ void findLargestNumber(){
   printf("max %d\n",max_number);
 }
 
+/*
+11.Svaka rec da pocinje velikim slovom
+*/
+
+void capitalizeWords(){
+  char c;
+  int flag=1;//flag(zastava) se koristi u programiranju da oznaci nesto u ovom slucaju space
+  while ((c = getchar()) != '\n')
+  {
+    if(flag == 1 && c<='z' && c>='a'){
+      c=c - ('a'-'A');
+      flag = 0;
+    }else if(c == ' '){
+      flag=1;
+    }
+    putchar(c);
+  }
+  
+}
+
 int main(){
-  findLargestNumber();
+  upperFirstCase();
   return 0;
 }
