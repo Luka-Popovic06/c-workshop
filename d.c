@@ -255,7 +255,35 @@ void removeVowels(){
   }
   
 }
+
+/*
+10.Napisati program koji pronalazi najveći broj u unetom tekstu.
+*/
+int isDiget(char c){
+  if(c >= '0' && c <= '9')
+    return 1;
+  else
+    return 0;
+}
+void findLargestNumber(){
+  char c;
+  int max_number=0;
+  int br=0;
+  while ((c = getchar()) != '\n')
+  {
+    if(isDiget(c) == 1){
+      br=br*10 + (c - '0');
+    }else{
+      max_number= max_number < br  ? br : max_number;
+      br=0;
+    }
+    
+  }
+  max_number= max_number < br ? br : max_number;
+  printf("max %d\n",max_number);
+}
+
 int main(){
-  removeVowels();
+  findLargestNumber();
   return 0;
 }
