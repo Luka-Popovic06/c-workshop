@@ -232,7 +232,30 @@ void task2(){
   }
   
 }
+/*
+9.Napisati program u kojem se izbacuju samoglasnici iz unetog teksta.
+,
+*/
+void removeVowels(){
+  char c;
+  while ((c=getchar())!= '\n')
+  {
+    switch(c){
+      case 'a':
+      case 'e':
+      case 'i':
+      case 'o':
+      case 'u':
+      //continue moze a i ne treba
+       break;
+      default:
+       putchar(c);
+       //return; da je ovde ono bi pravilo problem zato sto izlazi iz cele funkcije
+    }
+  }
+  
+}
 int main(){
-  task2();
+  removeVowels();
   return 0;
 }
