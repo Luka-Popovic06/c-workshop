@@ -297,13 +297,32 @@ void capitalizeWords(){
       flag = 0;
     }else if(c == ' '){
       flag=1;
+    }else {
+      flag=0;
     }
     putchar(c);
   }
   
 }
-
+/*
+12.Sve sto je unutar zagrade ne treba da se ispise
+*/
+void removeParenthesesContent(){
+  char c;
+  int flag=0;
+  while ((c = getchar()) != '\n')
+  {
+    if(c == '('){
+      flag=1;
+    }else if( c == ')'){
+      flag=0;
+    }else if(flag == 0){
+      putchar(c);
+    }
+  }
+  
+}
 int main(){
-  upperFirstCase();
+  task3();
   return 0;
 }
