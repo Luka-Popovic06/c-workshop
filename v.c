@@ -53,6 +53,7 @@ int pom1(int arg){
       if(da_li_je_prost_br(i))
          return i;
 
+  return 0;
 }
 
 void zadatak1(){

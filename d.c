@@ -29,10 +29,10 @@ void isPrime(){
   printf("Unesi broj:\n");
   int br;
   scanf("%d",&br);
-  if(br==1){
+  if(br==2){
       printf("Broj je prost");
       return;
-  }else if(br < 1){
+  }else if(br < 2){
     printf("Broj nije prost");
       return;
   }
@@ -353,7 +353,40 @@ while ((c = getchar()) != '\n')
 }
 printf("%d", suma);
 }
+
+/*
+14.Napisati program kojim se odreduju i ispisuju svi savršeni brojevi od 2 do N. 
+Broj je savršen ako je jednak sumi svojih delitelja isključujući njega samog. 
+28 je savršen broj, jer je: 28 = 1 + 2 + 4 +
+7 + 14
+,
+*/
+
+int isSavrsen(int br){
+  int sum=0;
+  for (int i = 0; i < br; i++)
+  {
+    if(br % i == 0){
+     sum+=i;
+    }
+  }
+  if(sum == br)
+     return 1;
+  else
+     return 0;
+}
+void task4(){
+  int n;
+  printf("Unesite poslednji broj\n");
+  scanf("%d", &n);
+  for (int i = 2; i < n; i++)
+  {
+    if(isSavrsen(i) == 1)
+       printf("%d \n", i);
+  }
+  
+}
 int main(){
-  task3();
+  task4();
   return 0;
 }
