@@ -439,3 +439,58 @@ void zad3(){
   outputArray(a, n);
 }
 
+/*
+4.Napisati program koji učitava niz celih brojeva "a", dužine "n", 
+a zatim pronalazi element koji se najviše puta pojavljuje u učitanom nizu. 
+Ispisati taj element i broj pojavljivanja tog elementa.
+*/
+void inputArray2(int a[], int n){
+  for(int i = 0; i < n; i++){
+    printf("Unesite %d. vrednost niza:\n", i);
+    scanf("%d", &a[i]);
+  }
+}
+void outputArray2(int a[], int n){
+  for (int i = 0; i < n; i++)
+  {
+    printf("[");
+    printf("%d", a[i]);
+    if(i != (n - 1))
+      printf(",");
+    if(i == (n - 1))
+     printf("]");
+  }
+}
+
+void zad4(){
+  int n;
+  printf("Unesite duzinu niza:\n");
+  scanf("%d", &n);
+  int a[n];
+
+  int max_number=0;
+  int max_repetition = 0;
+  int repetition = 0;
+  
+  inputArray2(a, n);
+
+  for (int i = 0; i < n; i++)
+  {
+    for (int j = 0; j < n; j++)
+    {
+      if(a[i] == a[j])
+        repetition++;
+    }
+    if(max_repetition < repetition){
+      max_repetition = repetition;
+      max_number = a[i];
+    }
+   repetition = 0;
+  }
+  printf("Num: %d Repetition: %d", max_number, max_repetition);
+}
+
+int main(){
+  zad4();
+  return 0;
+}
