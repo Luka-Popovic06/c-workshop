@@ -398,3 +398,44 @@ void zad2(){
   outputArray(d, counter_d);
 }
 
+/*
+3.Napisati program koji učitava niz celih brojeva "a", dužine "n", 
+a zatim niz unetih brojeva sortira u neopadajućem poretku.
+
+[1, 2, 3, 4, 5] ===> rastuci poredak
+[1, 2, 3, 4, 4, 4, 5, 5, 6, 7] ===> neopadajuci poredak
+                            (kao rastuci samo ima stagnacija)
+
+                         *Bubble Sort*  
+
+ - Ideja je da se veći elementi “dižu” ka kraju niza, kao mehurići u vodi – otuda naziv bubble. 
+[3, 5, 4, 1, 2]          
+*/
+
+
+void bubble_sort(int a[], int n){
+  for(int i = 0; i < n; i++){//prolazi kroz elemente niza
+    for(int j = 0; j < (n - i - 1); j++){ //poredi elemente niza
+      if(a[j] > a[j + 1]){// da bi mogli da vidima element koji je ispred dodajemo 1
+        int tmp = a[j];   //zbog ovog dodavanja keca smo oduzeli  jedan gore u uslovu
+        a[j] = a[j + 1];
+        a[j + 1] = tmp;
+      }
+    }
+  }
+
+}
+
+void zad3(){
+  int n;
+  printf("Unesite duzinu niza:\n");
+  scanf("%d", &n);
+  int a[n];
+
+  inputArray(a, n);
+
+  bubble_sort(a, n);
+
+  outputArray(a, n);
+}
+
