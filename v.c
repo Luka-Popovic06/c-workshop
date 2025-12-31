@@ -301,8 +301,48 @@ void zadatak5(){
   printf("%d", rezultat);
   
 }
+///////////////////////////////////////////////////////////////////////////////////////
+/*,
+Array
+Nizovi:
+
+int a[n] = {1, 2, 3, 4, 5, 0, 0, 0, 0, 0}
+
+=> int a[5]; - on fiksira 5 lokacija i ne moze da se siri
+=> a = {1, 2, 3, 4, 5};
+
+- Da smo stavili n=10, askoristili smo samo 5 polja on bi sotatak prostora popunio
+sa nulama
+
+- Svi elementi imaju svoj neki index pomocu koga ja pristupam toj vrednosti
+- index pocinje od 0 a zavrsava se na n - 1 index
+- a[2] ===> 3
+*/
+
+/*
+1.Napisati program koji učitava niz celih brojeva "a", dužine "n", 
+a zatim ispisuje njegove elemente.
+*/
+void readArrayFromInput(){
+  int n;
+  printf("Unesite duzinu niza:\n");
+  scanf("%d", &n);
+
+  int a[n];//deklarisanje niza
+
+  for(int i = 0; i < n; i++){
+    printf("Unesite %d. vrednost niza\n", i);
+    scanf("%d", &a[i]);
+  }
+
+  printf("Niz se sastoji od elemenata:\n");
+
+  for(int j=0; j<n; j++){
+    printf("%d ", a[j]);
+  }
+}
 
 int main(){
-  zadatak5();
+  loadArray();
   return 0;
 }
