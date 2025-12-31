@@ -386,7 +386,46 @@ void task4(){
   }
   
 }
+/*
+15.Sa standardnog ulaza unose se dva prirodna broja a i b (a < b). 
+Ispisati sve parove različitih brojeva iz tog intervala takve da je 
+zbir cifara prvog jednak zbiru cifara drugog broja.
+*/
+int sum(int n){
+  int sum = 0;
+  while (n > 0)
+  {
+    sum+=n%10;
+    n/=10;
+  }
+  return sum;
+}
+void task5(){
+  int a, b;
+  printf("Unesite prvi prirodni broj:\n");
+  scanf("%d", &a);
+  printf("Unesite drugi prirodni broj:\n");
+  scanf("%d", &b);
+
+  if(a>b){
+    printf("A je vece od B");
+  return;
+  }
+
+  for (int i = a; i <= b; i++)
+  {
+    for (int j = i+1; j <= b; j++)
+    {
+      if(sum(i) == sum(j)){
+       printf("%d %d, ", i, j);
+      }
+    }
+    
+  }
+  
+
+}
 int main(){
-  task4();
+  task5();
   return 0;
 }
