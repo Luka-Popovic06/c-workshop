@@ -422,10 +422,47 @@ void task5(){
     }
     
   }
-  
+}
 
+/*
+16.Sa standardnog ulaza unose se dva prirodna broja. 
+Ispisati sve dvocifrene brojeve koji se mogu sastaviti od cifara ta dva broja, 
+tako da jedna cifra bude iz jednog, a druga iz drugog broja. 
+Brojevi se mogu ponavljati prilikom ispisa i mogu biti u proizvoljnom redosledu.
+*/
+int combineNumber(int a,int b){
+  if(a == 0)
+    return 0;
+  
+  int comb= (a * 10) + b;
+  return comb;
+}
+void task6(){
+  int a, b;
+  printf("Unesite prvi prirodni broj:\n");
+  scanf("%d", &a);
+  printf("Unesite drugi prirodni broj:\n");
+  scanf("%d", &b);
+  int b_copy=b;
+  while (a > 0)
+  {
+    while (b > 0)
+    {
+      int numA = combineNumber(a%10,b%10);
+      int numB = combineNumber(b%10,a%10);
+      if(numA != 0 )
+        printf("%d, ", numA );
+      if(numB != 0)
+        printf("%d, ", numB);
+
+      b/=10;
+    }
+    b=b_copy;
+    a/=10;
+  }
+  
 }
 int main(){
-  task5();
+  task6();
   return 0;
 }
