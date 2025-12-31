@@ -18,6 +18,8 @@ Izlaz: 11 23 23 83 41 59
 #include <stdlib.h>
 #include <math.h>
 
+#define MAX_N 50
+
 int da_li_je_prost_br(int number){
   if(number <= 1)
       return 0;
@@ -342,7 +344,57 @@ void readArrayFromInput(){
   }
 }
 
-int main(){
-  loadArray();
-  return 0;
+/*
+2.Napisati program koji učitava niz celih brojeva "a", dužine "n", 
+unete brojeve deljive sa 3 stavlja u jedan niz, brojeve deljive sa 5 
+u drugi niz, a sve ostale brojeve u treći niz.
+*/
+//////
+//kad se prosledjuje int n, to je ustvari kopija elementa;
+//dok kad se prosledjuje niz int a[], to nije kopija niza nego je to orginal
+
+void inputArray(int a[], int n){
+  for(int i = 0; i < n; i++){
+    printf("Unesite %d. vrednost niza\n", i);
+    scanf("%d", &a[i]);
+  }
 }
+
+void outputArray(int a[], int n){
+  for(int j = 0; j < n; j++){
+    printf("%d ", a[j]);
+  }
+}
+/////
+
+void zad2(){
+  int n;
+  printf("Unesite duzinu niza:\n");
+  scanf("%d", &n);
+  // n ==> treba de se deklarise pre niza a[]
+
+  int a[n], b[MAX_N],c[MAX_N],d[MAX_N];
+  int counter_b=0,counter_c=0,counter_d=0;
+  
+  inputArray(a, n);
+
+  for(int i = 0; i<n; i++){
+    if(a[i] % 3 == 0){
+      b[counter_b]=a[i];
+      counter_b++;
+    }else if(a[i] % 5 == 0){
+      c[counter_c]=a[i];
+      counter_c++;
+    }else{
+      d[counter_d]=a[i];
+      counter_d++;
+    }
+  }
+
+  outputArray(b, counter_b);
+  printf("\n");
+  outputArray(c, counter_c);
+  printf("\n");
+  outputArray(d, counter_d);
+}
+
