@@ -462,7 +462,61 @@ void task6(){
   }
   
 }
+/*
+17.Uneti brojeve n i m. Za narednih n unetih brojeva, proveriti za svaki 
+broj da li se može zapisati kao zbir dva različita broja iz Fibonačijevog niza, 
+pri čemu je barem jedan od tih brojeva deljiv sa m. Ako može, dodati broj na sumu;
+ako ne može, oduzeti ga od sume.
+*/
+int isFibonaci(int arg){
+  if(arg == 1)
+  return 1;
+
+  int br1 = 1;
+  int br2 = 1;
+
+  while (br2 < arg)
+  {
+    int tmp = br1 + br2;
+    br1 = br2;
+    br2 = tmp;
+  }
+  
+  return br2 == arg ? 1 : 0;
+}
+
+int check(int n, int m){
+  for (int i = 1; i < n/2; i++)
+  {
+    if(isFibonaci(i) && isFibonaci(n - i) && (i % m == 0 || (n - i) % m == 0))
+    return 1;
+  }
+  return 0;
+}
+void task7(){
+  int n, m;
+  printf("Unesite n broj:\n");
+  scanf("%d", &n);
+  printf("Unesite m broj:\n");
+  scanf("%d", &m);
+  
+  int sum=0;
+  
+  for (int i = 1; i <= n; i++)
+  {
+    int br;
+    printf("Unesi te %d. broj: ", i);
+    scanf("%d", &br);
+
+    if(check(br, m))
+      sum+=br;
+    else 
+      sum-=br;
+  }
+  
+  printf("Suma je: %d\n", sum);
+}
 int main(){
-  task6();
+  task7();
   return 0;
 }
