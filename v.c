@@ -490,8 +490,36 @@ void zad4(){
   }
   printf("Num: %d Repetition: %d", max_number, max_repetition);
 }
+////////////////////////////////////////////////////////////////////////////////////
+/*
+,
+Rekurzija:
+Rekurzija je pojam u programiranju koji znači da funkcija poziva samu sebe da bi 
+rešila neki problem, ali svaki put sa manjim / jednostavnijim delom problema.
+n ---> podeliti problem na manje, jednostavnije delove
+Babuška
 
+4! = 4 * 3! ===> 4 * 6 = 24           4! = 24
+3! = 3 * 2! ===> 3 * 2 = 6
+2! = 2 * 1! ===> 2 * 1 = 2
+1! = 1 --> u osnovnom slucaju, odmah znamo odgovor (kad nadjemo ovo onda od ovog prosledjujemo rezultat prema gore)
+*/
+
+/*
+5.Napisati program koji učitava prirodan broj n i funkciju koja rekurzivno 
+izračunava n-ti član Fibonačijevog niza brojêva.
+*/
+int fib(int n){
+  
+  if( n == 0)
+   return 0;
+
+  if( n == 1)
+   return 1;
+
+   return fib(n - 1) + fib(n - 2);
+}
 int main(){
-  zad4();
+  printf("%d\n", fib(6));
   return 0;
 }
