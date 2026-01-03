@@ -533,7 +533,7 @@ int zad5(int n){
   return n * zad5(n - 1);
 }
 /*
-7.Napisati program koji učitava dva prirodna broja, n i s, i izračunava vrednost n na s. 
+7.Napisati program koji učitava dva prirodna broja, n i s, i izračunava vrednost n^s. 
 Rešenje zadatka realizovati pomoću rekurzivne funkcije za izračunavanje odredenog stepena 
 datog broja.
 */
@@ -543,7 +543,18 @@ int zad6(int n, int s){
 
   return n * zad6(n, (s - 1));
 }
+/*
+8.Napisati program koji učitava prirodan broj n i pomoću rekurzivne funkcije izračunava zbir
+njegovih cifara.
+*/
+int zad7(int n){
+  if(n < 10)
+  return n;
+
+  return zad7(n % 10) + zad7(n / 10);
+  
+}
 int main(){
-  printf("%d\n", zad6(9,2) );
+  printf("%d\n", zad7(101) );
   return 0;
 }
