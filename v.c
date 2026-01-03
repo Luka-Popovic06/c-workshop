@@ -519,7 +519,31 @@ int fib(int n){
 
    return fib(n - 1) + fib(n - 2);
 }
+/*
+6.Napisati program koji učitava prirodan broj n i funkciju koja rekurzivno 
+izračunava sumu prvih n prirodnih brojeva.
+==> Prvi prirodan broj je 1
+n
+n = 1
+*/
+int zad5(int n){
+  if (n == 1)
+   return 1;
+
+  return n * zad5(n - 1);
+}
+/*
+7.Napisati program koji učitava dva prirodna broja, n i s, i izračunava vrednost n na s. 
+Rešenje zadatka realizovati pomoću rekurzivne funkcije za izračunavanje odredenog stepena 
+datog broja.
+*/
+int zad6(int n, int s){
+  if(s == 0)
+   return 1;
+
+  return n * zad6(n, (s - 1));
+}
 int main(){
-  printf("%d\n", fib(6));
+  printf("%d\n", zad6(9,2) );
   return 0;
 }
