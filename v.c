@@ -554,7 +554,25 @@ int zad7(int n){
   return zad7(n % 10) + zad7(n / 10);
   
 }
+
+//9.
+//rekurzija
+//Funkcija poziva samu sebe dok ne dođe do osnovnog slučaja (base case).
+double f1(int n){
+  if(n == 1)
+   return 1;
+
+  return n + 1.0 / f1(n - 1);
+}
+//iterativno resenje
+//Problem se rešava pomoću petlji (for, while).
+double f1_i(int n){
+  double s = 1;
+  for (int i = 2; i <= n; i++)
+    s= i + 1.0 / s;
+  return s;
+}
 int main(){
-  printf("%d\n", zad7(101) );
+  printf("%lf\n %lf\n", f1(6), f1_i(6) );
   return 0;
 }
