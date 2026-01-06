@@ -516,7 +516,74 @@ void task7(){
   
   printf("Suma je: %d\n", sum);
 }
+void bubble_sort(int a[],int n){
+  for (int i = 0; i < n; i++){
+    for (int j = i + 1; j < n; j++)
+    {
+      if(a[i] > a[j]){
+        int tmp = a[i];
+        a[i] = a[j];
+        a[j]=tmp;
+      }
+    }
+    
+  }
+}
+/*
+18.Unosi se prirodan broj N i niz realnih brojeva A dimenzije N. 
+Odrediti niz S tako da važi da je svaki element S[i] jednak aritmetičkoj 
+sredini niza A iz kog je izuzet A[i].
+
+NE SMEŠ porediti double vrednosti direktno sa
+
+Treba:
+da izbaciš A[i]
+da računaš aritmetičku sredinu OSTALIH
+Zato funkcija treba da prima indeks, ne vrednost.
+*/
+void outputA(double s[], int n){
+  for (int i = 0; i < n; i++)
+  {
+    if(i == 0)
+    printf("[");
+    printf("%.2lf", s[i]);
+    if(i != (n - 1))
+      printf(",");
+    if(i == (n - 1))
+     printf("]");
+  }
+  
+}
+void inputA(double a[], int n){
+  for (int i = 0; i < n; i++)
+  {
+    printf("Unesite %d. broj:\n", (i + 1));
+    scanf("%lf", &a[i]);
+  }
+  
+}
+double aritmeticka_sred(double a[], int izuzmi, int n){
+  double res = 0.0;
+  for (int i = 0; i < n; i++)
+  {
+    if(i != izuzmi)
+     res += a[i]; 
+  }
+  res = res / 4;
+  return res;
+}
+void task8(int n){
+  double a[n];
+  inputA(a, n);
+  double s[n];
+  for (int i = 0; i < n; i++)
+  {
+    s[i]=aritmeticka_sred(a, i, n);
+  }
+  outputA(s, n);
+}
+
 int main(){
-  task7();
+  task8(5);
   return 0;
 }
