@@ -674,15 +674,70 @@ void task10(int n, int x){
     if(a[i] == x){
          shift(n,a,i);
          counter++;
-        }
+         i--;
+         n--;
+    }
   }
-  for (int i = 0; i < n - counter ; i++)
+  for (int i = 0; i < n; i++)
   {
     printf("%d ", a[i]);
   }
   
 }
+/*
+21.Implementirati merge dva niza. Dakle, ako imamo nizove A i B koji su 
+unapred sortirani, treba da kreiramo niz C koji sadrži sve elemente iz nizova 
+A i B, takode sortirano.
+*/
+void sort(int c[],int n){
+  for (int i = 0; i < n; i++){
+    for (int j = i + 1; j < n; j++)
+    {
+      if(c[i] > c[j]){
+        int tmp = c[i];
+        c[i] = c[j];
+        c[j]=tmp;
+      }
+    }
+    
+  }
+}
+void task11(int n){
+  int a[n];
+  int b[n];
+  int c[n + n];
+  int counter=0;
+  for (int i = 0; i < n; i++)
+  {
+    printf("Unesite %d. element u nizu:\n", i+1);
+    scanf("%d", &a[i]);
+  }
+  for (int i = 0; i < n; i++)
+  {
+    printf("Unesite %d. element u nizu:\n", i+1);
+    scanf("%d", &b[i]);
+  }
+
+  for (int i = counter; i < n; i++)
+  {
+    c[i] = a[i];
+    counter++;
+  }
+  for (int i = 0; i < n; i++)
+  {
+    c[counter++] = b[i];
+    
+  }
+
+  sort(c,n +n);
+
+  for (int i = 0; i < n + n; i++)
+  {
+    printf("%d ", c[i]);
+  }
+  
+}
 int main(){
-  task10(5, 4);
+  task11(5);
   return 0;
 }
