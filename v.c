@@ -572,7 +572,64 @@ double f1_i(int n){
     s= i + 1.0 / s;
   return s;
 }
+/*
+Matrica
+(vrsta,kolona)
+
+(0,0) (0,1) (0,2)
+(1,0) (1,1) (1,2) = A
+(2,0) (2,1) (2,2)
+
+A[i_v][i_k]
+imamo dve petlje jedna za vrste druga za kolone
+int a[][] ovako deklarisemo matricu
+Kvadratna matrica 3x3
+*/
+void popunjavanje_matrica(int a[][5], int n){//posto nismo stavili za broj vrsta nista, on po difoltu preuzima br. iz vrednosti za kolone
+for (int i = 0; i < n; i++)
+{
+  for (int j = 0; j < n; j++)
+  {
+    printf("Unesi te (%d, %d) vrednost:\n", i , j);
+    scanf("%d", &a[i][j]);
+  }
+}
+}
+void ispisi_matricu(int a[][5], int n){
+  for (int i = 0; i < n; i++)
+  {
+    for (int j = 0; j < n; j++)
+    {
+      printf("%d ", a[i][j]);
+    }
+    printf("\n");
+  }
+}
+
+void zad8(int n){
+  int a[n][n];
+  double sum = 0.0;
+  int counter = 0;
+
+  popunjavanje_matrica(a,n);
+  ispisi_matricu(a,n);
+
+  for (int i = 0; i < n; i++)
+  {
+    for (int j = 0; j < n; j++)
+    {
+      if(j > i){
+       sum += a[i][j];
+       counter++;
+      }
+
+    }
+  }
+  printf("%.2lf\n", sum/counter*1.0);
+  
+}
+
 int main(){
-  printf("%lf\n %lf\n", f1(6), f1_i(6) );
+  zad8(5);
   return 0;
 }
