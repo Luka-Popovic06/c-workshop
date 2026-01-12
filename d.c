@@ -596,7 +596,8 @@ ostati u istom poretku kao i pre modifikacije)
 
 void f(int n, int a[]){
   int tmp[n];
-  int counter=0;
+  int counter=0;//on prati slobodno mesto
+
   //Jedinstveni brojevi
   for (int i = 0; i < n; i++)
   {
@@ -649,7 +650,39 @@ void task9(int n){
   }
   
 }
+/*
+20.Napisati program kojim se niz A dimenzije N sažima tako što se iz njega 
+izbacuje svaki element koji je jednak broju X.
+*/
+void shift(int n, int a[], int index){
+  for (int i = index; i < n - 1 ; i++)// n - 1 da bi se izgubio poslednji element
+  {
+    a[i] = a[i+1];
+  }
+  
+}
+void task10(int n, int x){
+  int a[n];
+  for (int i = 0; i < n; i++)
+  {
+    printf("Unesite %d. element u nizu:\n", i+1);
+    scanf("%d", &a[i]);
+  }
+  int counter = 0;
+  for (int i = 0; i < n; i++)
+  {
+    if(a[i] == x){
+         shift(n,a,i);
+         counter++;
+        }
+  }
+  for (int i = 0; i < n - counter ; i++)
+  {
+    printf("%d ", a[i]);
+  }
+  
+}
 int main(){
-  task9(10);
+  task10(5, 4);
   return 0;
 }
