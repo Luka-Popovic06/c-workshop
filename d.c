@@ -582,8 +582,74 @@ void task8(int n){
   }
   outputA(s, n);
 }
+/*
+predhoditi:
+Brojevi koji prethode broju 5
+→ 1, 2, 3, 4
 
+-monotono ne opadajuci poredak = [1, 2, 3, 4....]
+
+19.Koja menja niz tako što na početak izdvaja sve one elemente koji se pojavljuju 
+samo jednom u nizu (ne zahtevati da se elementi ikako moraju sortirati ili da moraju 
+ostati u istom poretku kao i pre modifikacije)
+*/
+
+void f(int n, int a[]){
+  int tmp[n];
+  int counter=0;
+  //Jedinstveni brojevi
+  for (int i = 0; i < n; i++)
+  {
+    int flag=0;
+    for (int j = 0; j < n; j++)
+    {
+      if(a[i] == a[j]){
+        flag++;
+      }
+      
+    }
+    if (flag == 1)
+      {
+        tmp[counter++] = a[i];
+      }
+  }
+  //Brojevi koji se ponavljaju
+  for (int i = 0; i < n; i++)
+  {
+    int flag=0;
+    for (int j = 0; j < n; j++)
+    {
+      if(a[i] == a[j]){
+        flag++;
+      }
+      
+    }
+    if (flag > 1)
+      {
+        tmp[counter++] = a[i];
+      }
+  }
+  for (int i = 0; i < counter; i++)
+  {
+    a[i]=tmp[i];
+  }
+  
+}
+void task9(int n){
+  int a[n];
+  for (int i = 0; i < n; i++)
+  {
+    printf("Unesite %d. element u nizu:\n", i+1);
+    scanf("%d", &a[i]);
+  }
+  f(n,a);
+  for (int i = 0; i < n; i++)
+  {
+   printf("%d ", a[i]);
+  }
+  
+}
 int main(){
-  task8(5);
+  task9(10);
   return 0;
 }
