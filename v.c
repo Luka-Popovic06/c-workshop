@@ -634,7 +634,9 @@ void zad8(int n){
 10.Napisati program koji učitava dimenziju matrice (kvadratne) i popunjava njena 
 polja celobrojnim vrednostima. Ispisati element koji ima minimalnu vrednost i 
 element koji ima maksimalnu vrednsot.
-Pokazivaci
+
+Pokazivaci:
+
 */                                                 
 void min_max(int a[][3],int n, int *min, int *max){//*min ovo nam govori da smo prosledili adresu (radimo sa adresama) od min i max
   for (int i = 0; i < n; i++)
@@ -672,7 +674,46 @@ void zad9(int n){
   printf("MIN: %d\n", min);
   printf("MAX: %d\n", max);
 }
+
+/*
+11.Napisati program koji učitanu matricu transponuje i novodobijenu matricu 
+ispisuje na konzolu.
+
+Transponovati znaci da se zamene mesta od vrst a sa kolonama
+*/
+void zad10(int n){
+  int a[n][n];
+  int transponovana[n][n];
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      printf("Unesite (%d, %d) vrednost:\n", i, j);
+      scanf("%d", &a[i][j]);
+    }
+  }
+
+  for (int i = 0; i < n; i++)
+  {
+    for (int j = 0; j < n; j++)
+    {
+      transponovana[i][j] = a[j][i];
+    }
+  }
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      printf("%d ", a[i][j]);
+    }
+    printf("\n");
+  }
+  printf("\n");
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      printf("%d ", transponovana[i][j]);
+    }
+    printf("\n");
+  }
+}
+
 int main(){
-  zad9(3);
+  zad10(3);
   return 0;
 }
