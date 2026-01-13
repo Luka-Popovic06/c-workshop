@@ -712,8 +712,46 @@ void zad10(int n){
     printf("\n");
   }
 }
+/*
+12.Napisati program koji ispisuje unetu matricu tako da su joj kolone sortirane u 
+rastućem poretku.
+*/
+void swap(int *x, int *y){
+  int tmp = 0;
+  if(*x > *y){
+    tmp = *x;
+    *x = *y;
+    *y = tmp;
+  }
+}
+void sortKoloneMatrice(int n){
+  int a[n][n];
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      printf("Unesite (%d, %d) vrednost:\n", i, j);
+      scanf("%d", &a[i][j]);
+    }
+  }
 
+  for (int kolona = 0; kolona < n; kolona++)
+  {
+   for (int i = 0; i < n; i++)
+   {
+    for (int j = i + 1; j < n; j++)
+    {
+      swap(&a[i][kolona], &a[j][kolona]);
+    }
+   }
+  }
+  
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      printf("%d ", a[i][j]);
+    }
+    printf("\n");
+  }
+}
 int main(){
-  zad10(3);
+  sortKoloneMatrice(3);
   return 0;
 }
