@@ -743,7 +743,7 @@ void sortKoloneMatrice(int n){
     }
    }
   }
-  
+
   for(int i = 0; i < n; i++){
     for(int j = 0; j < n; j++){
       printf("%d ", a[i][j]);
@@ -751,7 +751,48 @@ void sortKoloneMatrice(int n){
     printf("\n");
   }
 }
+/*
+13.Napisati funkciju koja za uneti broj n pravi matricu kao u primeru za n=45371. 
+Prva vrsta matrice su cifre broja, svaka sledeća donja vrsta umanjuje cifre broja 
+iz gornje vrste naizmenično za 1 i 2. Prilikom oduzimanja kada se dode do 0 
+kreće se opet od 9. Implementirati odgovarajuće ispise matrice radi testiranja.
+*/
+int brojCifara(int br){
+  int brCifara = 0;
+  while (br > 0)
+  {
+    br /= 10;
+    brCifara++;
+  }
+  return brCifara;
+}
+
+void k1(int n){
+  int brCifara = brojCifara(n);
+  int A[brCifara][brCifara];
+  for (int j = brCifara - 1; j >= 0; j--){
+    A[0][j] = n % 10;
+    n/=10;
+  }
+  
+  for (int i = 1; i < brCifara; i++)
+  {
+    for (int j = 0; j < brCifara; j++)
+    {
+      A[i][j] = A[i - 1][j] - 2 + (i % 2);//uzmi vrednost iz iste kolone, ali iz prethodnog reda
+      if(A[i][j] < 0){
+        A[i][j] += 10;
+      }
+    }
+  }
+  for(int i = 0; i < brCifara; i++){
+    for(int j = 0; j < brCifara; j++){
+      printf("%d ", A[i][j]);
+    }
+    printf("\n");
+  }
+}
 int main(){
-  sortKoloneMatrice(3);
+  k1(45371);
   return 0;
 }
