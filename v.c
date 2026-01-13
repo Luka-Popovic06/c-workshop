@@ -17,6 +17,7 @@ Izlaz: 11 23 23 83 41 59
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <limits.h>
 
 #define MAX_N 50
 
@@ -572,8 +573,9 @@ double f1_i(int n){
     s= i + 1.0 / s;
   return s;
 }
+///////////////////////////////////////////////////////////////////////////////////////
 /*
-Matrica
+9.Matrica
 (vrsta,kolona)
 
 (0,0) (0,1) (0,2)
@@ -628,8 +630,49 @@ void zad8(int n){
   printf("%.2lf\n", sum/counter*1.0);
   
 }
+/*
+10.Napisati program koji učitava dimenziju matrice (kvadratne) i popunjava njena 
+polja celobrojnim vrednostima. Ispisati element koji ima minimalnu vrednost i 
+element koji ima maksimalnu vrednsot.
+Pokazivaci
+*/                                                 
+void min_max(int a[][3],int n, int *min, int *max){//*min ovo nam govori da smo prosledili adresu (radimo sa adresama) od min i max
+  for (int i = 0; i < n; i++)
+  {
+    for(int j = 0; j < n; j++){
+      if(a[i][j] < *min){//(diferenciranje) *min kad smo ovo uradili pozvali smo njihovu vrednost (radimo sa vrednostima)
+        *min = a[i][j];//(diferenciranjem postavljamo novu vrednost)
+      }
+      if(a[i][j] > *max){//da je ovde bilo samo ime promenljive to bi znacilo da radim sa njenom adresom
+        *max = a[i][j];
+      }
+    }
+  }
+}
+void zad9(int n){
+  int a[n][n];
+  int min = INT_MAX;
+  int max = INT_MIN;
 
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      printf("Unesite (%d, %d) vrednost:\n", i, j);
+      scanf("%d", &a[i][j]);
+    }
+  }
+
+  min_max(a,n, &min, &max);
+
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      printf("%d ", a[i][j]);
+    }
+    printf("\n");
+  }
+  printf("MIN: %d\n", min);
+  printf("MAX: %d\n", max);
+}
 int main(){
-  zad8(5);
+  zad9(3);
   return 0;
 }
