@@ -18,7 +18,9 @@ Izlaz: 11 23 23 83 41 59
 #include <stdlib.h>
 #include <math.h>
 #include <limits.h>
+#include <string.h>
 
+#define MAX 100
 #define MAX_N 50
 
 int da_li_je_prost_br(int number){
@@ -792,7 +794,42 @@ void k1(int n){
     printf("\n");
   }
 }
+
+//Stringovi
+/*
+String = niz karaktera
+char tekst[100];
+['n', 'e', 'z', 'u', 't', 'i', 'p', '\0']
+tekst[0]= 'n'
+*/
+/* 
+14.Napisati program koji učitava tekst, uklanja mu razmake (whitespace) i ispisuje 
+ga na konzolu.
+
+Primer: Ulaz:
+Hello my baby, hello my honey
+
+Izlaz:
+Hellomybaby,hellomyhoney
+*/
+
+void removeWhiteSpace(char *s){
+  int n = strlen(s);//računa dužinu stringa, rezultat je br. karaktera pre '\0'
+  int j = 0;
+  for (int i = 0; i < n; i++)
+  {
+    if(s[i] != ' ' && s[i] != '\t'){
+      s[j] = s[i];
+    }
+  }
+  s[j] = '\0';
+
+}
+void k2(){
+  char s[MAX];
+  removeWhiteSpace(s);
+}
 int main(){
-  k1(45371);
+  k2();
   return 0;
 }
