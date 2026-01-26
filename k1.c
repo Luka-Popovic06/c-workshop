@@ -42,47 +42,67 @@ double g_sredina(int x){
   //koren na nesto je ustvari (br / 1.0), i sa ovim kvadrirano
   // treći koren od 7 je: pow(7, 1.0 / 3);
 }
-int srednja_cifra(int n){
-  int copy_n = n;
-  int br_cifara = 0;
-  int redni_br_srednje_cif = 0;
-  int c = 0;
-  while (n > 0)
-  {
-    br_cifara++;
-    n/=10;
-  }
-  if(br_cifara % 2 != 0 ){
-    redni_br_srednje_cif = br_cifara / 2 + 1;
-    while (redni_br_srednje_cif > 0)
-    {
-      
-      if(redni_br_srednje_cif == 1){
-        c = copy_n % 10;
-      }
-       copy_n /= 10;
-      redni_br_srednje_cif--;
-    }
-  }else{
-    redni_br_srednje_cif = br_cifara / 2;
-    while (redni_br_srednje_cif >= 0)
-    { 
-      if(redni_br_srednje_cif == 1){
-        c = copy_n % 10;
-      }
-      if(redni_br_srednje_cif == 0){
-        c = c + ((copy_n % 10) * 10);
-      }
-      copy_n /= 10;
-      redni_br_srednje_cif--;
-    }
-  }
+/*
+2025/26
+k1 - grupa 1
+3.
+//Kongumerentnost:
+dva broja(a, b) su kongumerenta po modulu m ako daju isti ostatak pri deljenju sa m:
+(i = isto)
+a % m = i
+b % m = i
 
-  return c;
+//Simetricnost:
+dva broja su simetricna ako:
+a % m == b % m ===> i     <==>   b % m == a % m ===> i
+
+//unose se m, min i max
+proveravamo simetricnost svih br u intervalu [min, max]
+min = 5 [5,6] [5,7] [5,8] [5,9] 
+
+
+*/
+
+int kongumerentnost(int br1, int br2, int m){
+  int res = 0;
+  if(br1 % m == br2 % m)
+   res = 1;
+
+  return res;
 }
+int simetricnost(int br1, int br2, int m){
+  int res = 1;
+  if(kongumerentnost(br1,br2,m) && !kongumerentnost(br2,br1,m))// ako jedno jeste a drugo nije vrati 0
+  //ako A == 1 i B == 0 ====> res = 0;
+    res = 0;
+    
+  return res;
+}
+void zad03(){
+  int m,min,max;
+  printf("Unesite broj m:\n");
+  scanf("%d", &m);
+  printf("Unesite min i max:\n");
+  scanf("%d %d", &min, &max);
+  int resenje = 1;
+  for (int i = min; i <= max; i++)
+  {
+    for (int j = i; j <= max; j++)
+    {
+      if(simetricnost(i,j,m) == 0){
+       resenje = 0;
+      }
+    }
+    
+  }
+  if(resenje == 1)
+   printf("Relacija kongruentnosti po modulu %d je simetricna na skupu [%d, %d]\n", m,min,max);
+  else
+  printf("Relacija kongruentnosti po modulu %d je NIJE simetricna na skupu [%d, %d]\n", m,min,max);
 
-
+  
+}
 int main(){
-  printf("%d\n", uslov2(889)); //2345678
+  zad03();
   return 0;
 }
