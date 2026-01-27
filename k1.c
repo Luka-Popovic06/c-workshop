@@ -166,8 +166,61 @@ void zad04(){
   }
   
 }
+/*
+25/26
+k1 g-3
+5.
+// f-ja pom(x, min, max)
+f-ja ispituje da li se:
+1. barem jedna cifra od x nalazi u intervalu od min do max(min <= x <= max)
+2. barem jedna cifra od x nalazi van intervala od min do max
+==> AKO VAZE OBA USLOVA VRACA 1 
+==> A AKO NE VAZE VRACA 0
+
+Glavna Logika:
+1.Ucitavamo a i b [a, b] to je interval brojeva x
+2.Ucitavamo [min, max] okvir za pom()
+*/
+int pom01(int x, int min, int max){
+  int slucaj1 = 0;
+  int slucaj2 = 0;
+  int rezultat = 0;
+  int x_copy = x;
+  //ispituje 1 slucaj za obe cifre
+  while (x > 0)
+  {
+    int c = x % 10;
+    if((min <= c) && (c <= max)){
+       slucaj1 = 1;
+    }
+    x/=10;
+  }
+  while (x_copy > 0)
+  {
+    int c = x_copy % 10;
+    if((c < min) || (c > max)){
+      slucaj2 = 1;
+    }
+    x_copy/=10;
+  }
+
+  if((slucaj1 == 1) && (slucaj2 == 1))
+    rezultat = 1;
+
+  return rezultat;
+  
+}
+void zad05(int a, int b, int min , int max){
+  for (int i = a; i <= b; i++)
+  {
+    if(pom01(i, min, max)){
+      printf("%d ", i);
+    }
+  }
+  
+}
 int main(){
   //printf("%d", pretvaranje_broja_u_bazu(32,3));
-  zad04();
+  zad05(30, 60, 4, 5);
   return 0;
 }
