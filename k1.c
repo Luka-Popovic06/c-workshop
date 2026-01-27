@@ -100,9 +100,74 @@ void zad03(){
   else
   printf("Relacija kongruentnosti po modulu %d je NIJE simetricna na skupu [%d, %d]\n", m,min,max);
 
+}
+/*
+25/26
+k1 g-2
+4.
+
+Pretvori 32 u bazu 3:
+
+32 ÷ 3 = 10 ostatak 2
+10 ÷ 3 = 3 ostatak 1
+3 ÷ 3 = 1 ostatak 0
+1 ÷ 3 = 0 ostatak 1
+
+Ostatke čitamo od dole prema gore → 1012 (baza 3)
+
+Obrnemo cifre: 1012 → 2101
+
+Vratimo u decimalni sistem:
+
+2×3³ + 1×3² + 0×3¹ + 1×3⁰
+
+2×27 + 1×9 + 0×3 + 1×1 = 64
+1.Uzimam cifre od 2 do 9 iz broja
+ako je cifra 1 ili 0 vratim 0
+za svaku cif koja nije 0 ili 1 uzmimam da je osnova i radim 
+*/
+//Ovde pretvaram taj broj u bazu i potom ga obrcem
+int pretvaranje_broja_u_bazu(int N, int baza){
+  int rezultat = 0;
+  while (N > 0)
+  {
+    rezultat = rezultat * 10 + (N % baza);
+    N/= baza;
+  }
+  return rezultat;
+}
+int vracanje_broja_u_decimalni_sistem(int N, int baza){
+  int stepen = 0;
+  int br = pretvaranje_broja_u_bazu(N,baza);
+  int rezultat = 0;
+
+  while (br > 0)
+  {
+    rezultat += (br % 10) * pow(baza,stepen);
+    stepen++;
+    br/=10; 
+  }
+  return rezultat;
+}
+void zad04(){
+  int N;
+  printf("Unesite broj N:\n");
+  scanf("%d", &N);
+  int N_copy = N;//NESMEM DA DEKLARISEM PROMENLJIVU PRE NEGO STO DODAM VREDNOST U GLAVNU PROMENLJIVU
+  while (N > 0)
+  {
+    int cifra = N % 10;
+    if(cifra == 0 || cifra == 1){
+      printf("%d ", 0);
+    }else{
+      printf("%d ", vracanje_broja_u_decimalni_sistem(N_copy,cifra));
+    }
+    N/=10;
+  }
   
 }
 int main(){
-  zad03();
+  //printf("%d", pretvaranje_broja_u_bazu(32,3));
+  zad04();
   return 0;
 }
