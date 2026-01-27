@@ -219,8 +219,58 @@ void zad05(int a, int b, int min , int max){
   }
   
 }
+/*
+25/26
+k1 g-4
+6.
+
+//pom(x , min, max)
+1.Cifre koje su u intervalu min <= c <= max (stavlja na pocetak broja)
+2.Ostale cifre idu odmah iza njih
+[2, 4]
+4 8 2 3 6 1 ====> 4 2 3 8 6 1
+u = 423
+i = 861
+*/
+void zad06(int x, int min, int max){
+  int c_unutra = 0;
+  int c_izvan = 0;
+  int res = 0;
+  int stepen1 = 0;
+  int stepen2 = 0;
+  int stepen = 0;
+  int rezultat = 0;
+  while (x > 0)
+  {
+    int c = x % 10;
+    if((c >= min) && (c <= max)){
+      c_unutra += c * pow(10,stepen1);
+      stepen1++;
+    }else{
+      c_izvan += c * pow(10,stepen2);
+      stepen2++;
+    }
+    x/=10;
+  }
+  printf("%d unutra\n", c_unutra);
+  printf("%d izvan \n", c_izvan);
+  
+  while (c_izvan > 0)
+  {
+    rezultat += (c_izvan % 10) * pow(10,stepen);
+    stepen++;
+    c_izvan/=10;
+  }
+  while (c_unutra > 0)
+  {
+    rezultat +=(c_unutra % 10) * pow(10,stepen);
+    stepen++;
+    c_unutra/=10;
+  }
+  printf("%d \n", rezultat);
+}
 int main(){
   //printf("%d", pretvaranje_broja_u_bazu(32,3));
-  zad05(30, 60, 4, 5);
+  zad06(482361, 2, 4);
   return 0;
 }
