@@ -339,3 +339,110 @@ void zad07(int a, int b){
   }
   
 }
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// Rad sa Karakterima: ///
+
+// 'A' < 'a'
+//('a' - 'A') = 32
+/* 
+===> RAD SA BROJEVIMA:
+
+1.Da bi se dobijo neki broj:
+char '0' - char 'br' ==> broj
+
+2.Da se dobije char 'br':
+char '0' + br = char 'br'
+
+===> RAD SA SLOVIMA:
+
+1.Prebacivanje iz Velikog u Malo slovo:
+char 'slovo.Veliko' + ('a' - 'A') ==> slovo.Malo
+
+2.Prebacivanje iz Malog u Veliko slovo:
+char 'slovo.Malo' - ('a' - 'A') ==> slovo.Veliko
+
+* char ch; ==> adresa na koju se sprema karakter
+* getchar() ==> Uzima jedan karakter sa tastature
+* putchar(ch) ==> ispisuje jedan karakter na ekran
+
+*/
+//TEST ZADATAK:
+void testZad(){
+  char ch;
+  while ((ch = getchar()) != '\n')
+  {
+    if(ch == ' '){
+      putchar('_');
+    }else if(ch <= 'Z' && ch >= 'A'){
+      putchar(ch + ('a' - 'A'));
+    }else{
+      putchar(ch);
+    }
+  }
+  
+}
+/*
+25/26
+K1 G-1 ==> char
+8.
+
+-Napisati funkciju char pom(char malo_slovo, int dodatak)
+==>Povecava malo_slovo za dodatak sve dok rezultat ne izade iz opsega malih slova.
+==>Vratiti poslednje malo slovo pre izlaska iz opsega.
+=>Parametru (dodatak) nadje broj 0, vratiti karakter sa ASCII vrednoscu 0.
+
+-Glavni program
+1.Ucitavamo:
+==> c - char
+==> dva broja (a,b) ==> (a < b)
+==> dav char-a (m, n)
+
+-Plan:
+==>Pom se poziva nad:
+-char c == malo_slovo 
+-int dodatak br. iz intervala [a,b]
+===> Taj rezultat treba da se nalazi izmedju char [m,n]
+=>Ako se nalazi ispisi ga
+*/
+
+char pom02(char malo_slovo, int dodatak){
+  if(dodatak == 0) return 0;//karakter sa ascii vrednoscu 0 // vrednost nekog karaktera je dec. broj
+
+  char poslednje_malo_slovo = ' ';
+  while (malo_slovo<= 'z' && malo_slovo>='a')
+  {
+    poslednje_malo_slovo = malo_slovo;
+    malo_slovo+= dodatak;
+  }
+  return poslednje_malo_slovo;
+}
+
+void zad08(){
+  char c, m, n;
+  int a, b;
+
+  printf("Unesite malo slovo:\n");
+  scanf(" %c", &c);//Razmak ispred %c preskače whitespace (\n, space, tab).
+
+  printf("Unesite prvi karakter:\n");
+  scanf(" %c", &m);//Razmak ispred %c preskače whitespace (\n, space, tab).
+
+  printf("Unesite drugi karakter:\n");
+  scanf(" %c", &n);//Razmak ispred %c preskače whitespace (\n, space, tab).
+
+  printf("Unesite interval:\n");
+  scanf("%d %d", &a, &b);
+
+  for (int i = a; i <= b; i++)
+  {
+    if(m <= pom02(c,i) && n >= pom02(c,i)){
+      printf("%c ", pom02(c,i));
+    }
+  }
+  
+}
+
+int main(){
+  zad08();
+  return 0;
+}
