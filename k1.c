@@ -383,7 +383,7 @@ void testZad(){
 }
 /*
 25/26
-K1 G-1 ==> char
+K1 G-1 ==> char zad = 1
 8.
 
 -Napisati funkciju char pom(char malo_slovo, int dodatak)
@@ -441,8 +441,81 @@ void zad08(){
   }
   
 }
+/*
+25/26
+K1 G-5 ==> char zad = 2
+9.
 
+-Napisati program koji obraduje ulaznu sekvencu simbola na sledeci nacin:
+-Uslove:
+1.Kada naide na simbol ^, prvo naredno slovo pretvara u veliko.
+
+2.Ako je odmah posle simbola ^ broj k, prvih narednih k slova (ili manje ako ih nema k) pretvara u
+velika:
+-Prekida se kad naidje na (sve sto nije slovo)
+
+3.Analogno, ako naide na simbol _, prvo naredno ili prvih k narednih slova pretvara u mala.
+-Prekida se kad naidje na (sve sto nije slovo)
+
+4.Specijalni simboli ^ i _ i broj k se ne ispisuju.
+5.Nova Operacija je jaca od Stare Operacije (stara se prekida)
+6.Tekst se zavrsava praznim redom ('\n');
+
+*/
+void zad09(){
+  char c;
+  int veliko_slovo = 0;
+  int malo_slovo = 0;
+  int brojac_velikih_slova = 0;
+  int brojac_malih_slova = 0;
+  while ((c = getchar()) != '\n')
+  {
+    if(c == ' ' || c == ','){
+      putchar(c);
+    }
+    if(c == '^'){//ako je simbol ^ setujem velicinu slova
+      veliko_slovo = 1;
+      malo_slovo = 0;
+    }else if(veliko_slovo == 1){//ako je setovana velicina slova na veliko
+      if(c <= '9' && c >= '0'){//ispitujem da li ima br posle simbola ^
+        brojac_velikih_slova = (c -'0')-1;
+      }else{
+      putchar(c - ('a' - 'A'));
+      veliko_slovo = 0;
+      }
+    }else if(c == '_'){
+      malo_slovo = 1;
+      veliko_slovo = 0;
+    }else if(malo_slovo == 1){
+      if(c <= '9' && c >= '0'){
+        brojac_malih_slova = (c -'0') - 1;
+        
+      }else{
+      putchar(c + ('a' - 'A'));
+      malo_slovo = 0;
+      }
+    }else if(brojac_velikih_slova != 0){
+      brojac_malih_slova = 0;
+      if(c > '9' || c < '0'){//ovo je da se uverimo da smo ponovo na karakteru
+       if(c >= 'a' && c<= 'z'){
+         brojac_velikih_slova--;
+         putchar(c - ('a' - 'A'));
+        }
+      }
+    }else if(brojac_malih_slova != 0){
+      brojac_velikih_slova = 0;
+      if(c > '9' || c < '0'){
+        if(c>= 'A' && c<= 'Z'){
+          brojac_malih_slova--;
+          putchar(c + ('a' - 'A'));
+        }
+      }
+    }else{
+      putchar(c);
+    }
+  }
+}
 int main(){
-  zad08();
+  zad09();
   return 0;
 }
