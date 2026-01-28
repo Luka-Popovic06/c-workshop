@@ -269,8 +269,73 @@ void zad06(int x, int min, int max){
   }
   printf("%d \n", rezultat);
 }
-int main(){
-  //printf("%d", pretvaranje_broja_u_bazu(32,3));
-  zad06(482361, 2, 4);
-  return 0;
+/*
+25/26
+k1 g-6
+7.
+1.Harmonijska srednina cifara broja x (razlicitih od 0):
+n - broj koji korisnik unosi
+a1...an === cifre broja
+n / ((1 / a1) + ... + (1 / an));
+ */
+double harmonijska_sredina(int n){
+  double brojilac = 0;// broji koliko cifara ima broj
+  double imenilac = 0;
+
+  while (n > 0)
+  {
+    int c = n % 10;
+    if(c != 0){//nesme neki br da se deli sa nulom puca kod
+      imenilac += 1.0 / c;
+      brojilac++;
+    }
+
+    n /= 10;
+  }
+
+  if(brojilac == 0) return 0;//nesme neki br da se deli sa nulom puca kod
+
+  return brojilac / imenilac;
+}
+int prirodan_br_n_je_poseban(int br){
+    double h = harmonijska_sredina(br);
+
+    int k = 0; //broj cifara
+    int tmp = br; // kopija br-a
+
+    while(tmp){// broji cifre
+        k++;
+        tmp /= 10;
+    }
+
+    int desno = (k + 1) / 2;// dobijanje desne strane
+    int i = 0;
+
+    while(br > 0){
+        int c = br % 10;
+
+        if(i < desno){
+            // desna polovina
+            if(c >= h) return 0;
+        }else{
+            // leva polovina
+            if(c < h) return 0;
+        }
+
+        br /= 10;
+        i++;
+    }
+
+    return 1;
+}
+
+
+void zad07(int a, int b){
+  for (int i = a; i <= b; i++)
+  {
+    if(prirodan_br_n_je_poseban(i) == 1){
+      printf("%.3f %d\n", harmonijska_sredina(i), i);
+    }
+  }
+  
 }
