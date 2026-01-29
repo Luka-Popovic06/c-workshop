@@ -652,6 +652,7 @@ while(bitna zbog brojanja redova){
 25/26
 K1 G-6 ==>  zad = 3
 11.
+
 1.Program ucitava m i n 
 2.Pravim interval [m,n]
 3.(a > b) (b > c) (a + b >= 2 * b)
@@ -692,7 +693,55 @@ int teorema(int a, int b, int c) {
     printf("Teorema vazi\n");
   }
  }
+ /*
+ 25/26
+K1 G-5 ==>  zad = 3
+12.
+
+-Ucitavamo dva broja m i n
+-Pravimo interval [m,n]
+-(a < b) (a < c) (b <= c)    a < b <= c
+
+====>Ako je a najvece (a > b > c) onda poredimo parametre u for-u redom kako je navedeno u zadatku
+[m, parametar(b ili c)]
+====>Ako je a najmanje (a < b < c) onda poredimo parametre u for-u sa 
+[m,n]
+-I u tom slucaju ubacujemo u poslednji for uslov if(prva dva uslova iz teoreme);
+ */
+int tester_teoreme(int a,int b, int c){
+  if(a < b && a < c && b <= c) return 1;
+  else return 0;
+}
+
+
+void zad12(){
+  int m,n;
+  scanf("%d %d", &m, &n);
+  int t_tacna = 1;
+
+  for (int c = m; c <= n; c++)
+  {
+    for (int b = m; b <= n; b++)
+    {
+      for (int a = m; a <= n; a++)
+      {
+        if(a < b && a < c){           // proveravamo samo relevantne trojke
+            if(!tester_teoreme(a,b,c)){
+                if(t_tacna){
+                    printf("Teorema nije tacna\n");
+                    t_tacna = 0;
+                  }
+                    printf("(%d,%d,%d)\n", a, b, c);
+              }
+      }
+    }
+  }
+}
+if(t_tacna){
+    printf("Teorema je tacna\n");
+  }
+}
 int main(){
-  zad11();
+  zad12();
   return 0;
 }
