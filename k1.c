@@ -515,7 +515,137 @@ void zad09(){
     }
   }
 }
+/*
+25/26
+K1 G-6 ==> char zad = 2
+10.
+
+1.Svaki neparan red predstavlja modifikacije koje treba napraviti u narednom redu
+2.U parnim redovima je tekst koji treba modifikovati
+
+3. @ praceno br. predstavlja -redni broj reci- koju treba izmeniti
+4. * pracen br. predstavlja -broj slova- od kog krece izmena
+5. + pracen br. predstavlja (umnozavanje datog slova k. puta)
+6. - pracen br. predstavlja (zamenu narednih k. slova sa ?)
+
+7.Unos se zavrsava praznim neparnim redom.
+
+Unosi se:
+1.Simbol i broj(k)
+2.Text
+
+
+//////////////////////////////////////////////
+Ovako se testira da li je prazan red:!!!!!!!
+
+c = getchar();
+if (c == '\n') break;
+
+////////////////////////////////////////////
+*/
+
+void zad10() {
+    char s, c;
+    int broj_reda = 1;
+
+    while (1) {//Ovo je beskonačna petlja, koja se prekida samo kad korisnik unese prazan neparan red
+        int redni_broj_reci = 1;
+        int redni_broj_slova = 1;
+        int broj_umnozavanja = 0;
+        int broj_zamena = 0;
+        char op = 0;//operator
+
+        /* ===== NEPARAN RED (komanda) ===== */
+        s = getchar();
+        if (s == '\n') break;  // prazan neparan red -> kraj
+
+        while (s != '\n') {
+            if (s == '@' || s == '*' || s == '+' || s == '-') {
+                char type = s;
+                int num = 0;
+
+                // čitaj broj posle simbola
+                s = getchar();
+                while (s >= '0' && s <= '9') {//ide dok char != broju
+                    num = num * 10 + (s - '0');
+                    s = getchar();//dodajemo novi char (ako je br. petlja se nastavlja a ako nije prekida se)
+                }
+                if (num == 0) num = 1;//ako se num ne promeni setujemo ga na 1 po defaultu
+
+                //u zavisnosti od type setujemo num
+                if (type == '@') redni_broj_reci = num;
+                else if (type == '*') redni_broj_slova = num;
+                else {
+                    op = type;
+                    if (type == '+') broj_umnozavanja = num;
+                    else broj_zamena = num;
+                }
+            } else {
+              //ako nije nista samo spremi karakter
+                s = getchar();
+            }
+        }
+
+        /* ===== PARAN RED (tekst) ===== */
+        int brojac_reci = 1;
+        int brojac_slova = 0;
+        int skip = 0;
+
+        while ((c = getchar()) != '\n') {
+            if (skip > 0) {
+                putchar('?');
+                skip--;
+                continue;
+            }
+
+            if (c == ' ') {
+                brojac_reci++;
+                brojac_slova = 0;
+                putchar(c);
+                continue;
+            }
+
+            brojac_slova++;
+
+            if (brojac_reci == redni_broj_reci && brojac_slova == redni_broj_slova) {
+                if (op == '+') {
+                    for (int i = 0; i < broj_umnozavanja; i++)
+                        putchar(c);
+                } else if (op == '-') {
+                    putchar('?');
+                    skip = broj_zamena - 1;
+                } else {
+                    putchar(c);
+                }
+            } else {
+                putchar(c);
+            }
+        }
+
+        putchar('\n');
+        broj_reda++;
+    }
+}
+/*
+Imamo dva dela zad:
+
+1.Prvi deo je bitan samo zbog komandi njega ne mozemo da sacuvamo pa zato 
+komande smestamo u pomocne promenljive.(POSEBNA PETLJA)
+2.Drugi deo je bitan i njega citamo karakter po karakter i u zavisnostio od  
+komandi ga modifikujemo(POSEBNA PETLJA)
+3.Najbitnije na papiru ispisati sve slucajeve
+
+4.Ovo sve je stavljeno u veliku petlju koja je beskonacna dok ne dodje do
+ if-a koji ima u sebi uslov ako je uslov ispunjen beskonacna petlja puca
+
+5.Šema zadatka:
+
+while(bitna zbog brojanja redova){
+1.while(bitan zbog setovanja uslova)
+2.while(bitan zbog primene uslova na tekstu)
+}
+*/
 int main(){
-  zad09();
+  zad10();
   return 0;
 }
