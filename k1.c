@@ -645,7 +645,54 @@ while(bitna zbog brojanja redova){
 2.while(bitan zbog primene uslova na tekstu)
 }
 */
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+////////////////////////////// -  DOKAZIVANJE TEOREME - ////////////////////////////////////
+25/26
+K1 G-6 ==>  zad = 3
+11.
+1.Program ucitava m i n 
+2.Pravim interval [m,n]
+3.(a > b) (b > c) (a + b >= 2 * b)
+4. a > b > c
+5.Ukoliko teorema vazi, ispisujemo("Teorema vazi")
+6.Ukoliko ne vazi:
+-ispisujemo ("Teorema ne vazi")
+-i ispisujemo sve trojke (a,b,c) za koje ne vazi
+ */
+int teorema(int a, int b, int c) {
+    if (a > b && b > c && (a + c >= 2 * b))
+        return 1;
+    else
+        return 0;
+}
+ void zad11(){
+  int m,n;
+  printf("Unesite m i n:\n");
+  scanf("%d %d", &m,&n);
+  int ne_vazi = 1;
+  for (int a = m; a <= n; a++)// a <= n bitni su uslovi
+  {
+    for (int b = m; b < a; b++)// b < a
+    {
+      for (int c = m; c < b; c++)// c < b
+      {
+        if(teorema(a,b,c) == 0 && ne_vazi == 1){
+          printf("Teorema NE vazi\n");
+          ne_vazi = 0;
+        }
+        if(ne_vazi == 0 && teorema(a,b,c) == 0){
+          printf("(%d,%d,%d)\n", a, b, c);
+        }
+      }
+    }
+  }
+  if(ne_vazi == 1){
+    printf("Teorema vazi\n");
+  }
+ }
 int main(){
-  zad10();
+  zad11();
   return 0;
 }
