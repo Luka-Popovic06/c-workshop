@@ -779,7 +779,69 @@ void zad13(){
         printf("relacija nije simetricna");
     }
 }
+/*
+25/26
+K1 G-1 ==>  zad = 2
+14.
+1.Na osnovu unetog prirodnog br. N obradjujemo ulaznu sekvencu koda
+2.N = broj citanja redova text-a
+3.Nakon unetih svih N redova ispisati karakter kojim pocinje red u 
+kome se nalazi najveci broj
+4.Ukoliko se najveci broj nalazi u dva ili vise redova, 
+ispisati onaj red u kome se javio prvi put.
+*/
+void zad14(){
+  int N;
+  scanf("%d", &N);
+  char c;
+  int najveci_broj = 0;
+  int izdvojeni_br = 0;
+  char selected_c = ' ';
+  char res= ' ';
+
+  ///////////////!!!!!!!!!!!!!!!!!! (c <= '0' || c >= '9') !!!!!!!!!!!!!!!!!!!!!
+  // Ovo (c <= '0' || c >= '9') a NE OVO : (c <= '0' && c >= '9')
+  for (int i = 0; i <= N; i++)
+  {
+    while ((c = getchar()) != '\n')
+    {
+      if(selected_c == ' ' && !(c >= '0' && c <= '9')){
+       selected_c = c;
+      }else if(c >= '0' && c <= '9'){
+        izdvojeni_br = izdvojeni_br * 10 + (c - '0');
+      }else if((izdvojeni_br > najveci_broj) && (c <= '0' || c >= '9') ){
+        najveci_broj = izdvojeni_br;
+        izdvojeni_br = 0;
+        res = selected_c;
+      }
+    }
+    selected_c = ' ';
+  }
+  printf("%c\n", res);
+}
+/*
+25/26
+K1 G-2 ==>  zad = 2
+15.
+**************
+1.Na osnovu broja N obradjujemo ulaznu sekvencu
+2.citamo N redova teksta
+3.Nakon svakog procitanog reda treba na konzolu ispisati najveci broj u heksadecimalnom sistemu
+4.Dobijanje hex_vrednosti!!!
+*/
+int hex_value(char c){
+  
+  if(c >= '0' && c <= '9') return c - '0';//ovako dobijamo hex broj
+  if(c >= 'a' && c <= 'f') return c - 'a' + 10;//Ovako ce mo uvek dobiti hex slovo
+  if(c >= 'A' && c <= 'F') return c - 'A' + 10;//okvir se pravi do f zato sto hex ide do f
+  return -1;
+}
+/*
+25/26
+K1 G-2 ==>  zad = 3
+16.
+
+*/
 int main(){
-  zad13();
   return 0;
 }
