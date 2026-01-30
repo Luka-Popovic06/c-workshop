@@ -741,7 +741,45 @@ if(t_tacna){
     printf("Teorema je tacna\n");
   }
 }
+/*
+25/26
+K1 G-1 ==>  zad = 3
+13.
+
+1.testiranje svojstva simetricnosti po modulu m
+2.dva br. a i b su kongruentna po modulu m ako: (a % m == b % m)
+3.Svojstvo simetricnosti:
+ako (a kongumerentno sa b po modulu m) onda (b kongumerentno sa a po modulu m)
+4.Unosi se:
+[m, min , max] ==> [min, max]
+*/
+int ispitivanjeKongruentnosti(int a, int b, int m){
+    return a % m == b % m;
+}
+
+void zad13(){
+    int m, min, max;
+    scanf("%d %d %d", &m, &min, &max);
+
+    int simetricna = 1;
+
+    for(int a = min; a <= max; a++){
+        for(int b = min; b <= max; b++){
+            if(ispitivanjeKongruentnosti(a,b,m) && //ako ova jeste
+               !ispitivanjeKongruentnosti(b,a,m)){//i ako ova nije 
+                simetricna = 0;//setujemo da nemamo simetricnost
+            }
+        }
+    }
+
+    if(simetricna){
+        printf("relacija kongruentnosti po modulu %d je simetricna na skupu [%d, %d]",
+               m, min, max);
+    } else {
+        printf("relacija nije simetricna");
+    }
+}
 int main(){
-  zad12();
+  zad13();
   return 0;
 }
