@@ -97,7 +97,38 @@ void zad02(){
   
   
 }
+//3.ispisati unatu mat. tako da su joj kolone sortirane u rastucem poredku
+void swap(int *x, int *y){
+  
+  if(*x > *y){
+    int tmp = *y;
+    *y = *x;
+    *x = tmp;
+  }
+}
+void sortKoloneMatrice(int mat[][3], int n){
+  for (int kolona = 0; kolona < n; kolona++)
+  {
+    for (int vrsta1 = 0; vrsta1 < n - 1; vrsta1++)
+    {
+      for (int vrsta2 = vrsta1 + 1; vrsta2 < n; vrsta2++)
+      {
+        swap(&mat[vrsta1][kolona], &mat[vrsta2][kolona]);
+      }
+    }
+  }
+}
+void zad03(int n){
+  int mat[3][3];
+  popuni_matricu(mat, n);
+  ispisi_matricu(mat,n);
+  printf("\n");
+  sortKoloneMatrice(mat,n);
+  printf("\n");
+  ispisi_matricu(mat,n);
+  printf("\n");
+}
 int main(){
-  zad02();
+  zad03(3);
   return 0;
 }
