@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <limits.h>
 //MATRICE
 //uvek se prosledjuje njena prava vrednost, a ne kopija
 /*
@@ -28,6 +29,15 @@
    i < j
 6.ispod glavne dijagonale:
    i > j
+
+
+//RAD SA ADRESAMA(& - putem ovoga pristupam adresi promenljive)
+// f-ja( &MIN )
+1.REFERENCIRANJE:
+-STAVLJAMO INT *MIN (DOBIJAMO ADRESU PROMENLJIVE)
+2.DEFERENCIRANJE:
+-PONOVO STAVLJAMO ZVEZDICU:
+- *MIN (PRISTUPAMO VREDNSOTI)
 */
 void popuni_matricu(int a[3][3], int n){
   for (int i = 0; i < n; i++)
@@ -63,9 +73,31 @@ void zad01(){
       else continue;
     }
   }
+}
+//2.Ucitava matricu i potom je transponuje
+void zad02(){
+  int m[3][3];
+  int n = 3;
+  for (int i = 0; i < n; i++)
+  {
+    for (int j = 0; j < n; j++)
+    {
+      printf("Unesi [%d,%d] element:", i,j);
+      scanf("%d", &m[i][j]);
+    }
+  }
+  for (int i = 0; i < n; i++)
+  {
+    for (int j = 0; j < n; j++)
+    {
+      printf("%d ", m[j][i]);
+    }
+    printf("\n");
+  }
+  
   
 }
 int main(){
-  zad01();
+  zad02();
   return 0;
 }
