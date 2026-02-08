@@ -128,7 +128,62 @@ void zad03(int n){
   ispisi_matricu(mat,n);
   printf("\n");
 }
+//4.F-ja za uneti br n= 45371 pravi matricu
+//prva vrsta su cif broja
+//svaka sledeca vrsta umanjuje vrednost za 1 ili 2 naizmenicno
+//kad se dojde do 0 krece se od 9 i odma se primenjuje (1 ili 2)
+//neparna kolona se smanjuje za 1
+//parna za 2
+//kad se spustim ispod 0 dodajem 10 i primenjeujem pravilo
+void zad04(int n){
+  int a[5][5];
+  int rot_n=0;
+  while (n > 0)
+  {
+    rot_n=rot_n * 10 + (n % 10);
+    n/=10;
+  }
+  
+  for (int vrsta = 0; vrsta < 5; vrsta++)
+  {
+    for (int kolona = 0; kolona < 5; kolona++)
+    {
+      if(vrsta == 0 ){
+      a[vrsta][kolona]=rot_n%10;
+      rot_n/=10;
+      }else if(vrsta % 2 != 0){
+        if(a[vrsta-1][kolona] > 0 && (a[vrsta-1][kolona] != 1)){
+        a[vrsta][kolona]=a[vrsta - 1][kolona] - 1;
+        }else if(a[vrsta-1][kolona] == 0){
+          a[vrsta][kolona] = 10 - 1;
+        }else if(a[vrsta-1][kolona] == 1){
+          a[vrsta][kolona] = 10 - 1;
+        }
+      }else{
+        if(a[vrsta-1][kolona] > 0 && (a[vrsta-1][kolona] != 1)){
+        a[vrsta][kolona]=a[vrsta - 1][kolona] - 2;
+        }else if(a[vrsta-1][kolona] == 0){
+          a[vrsta][kolona] = 10 - 2;
+        }else if(a[vrsta-1][kolona] == 1){
+          a[vrsta][kolona] = 10 - 1;
+        }
+      }
+    }
+  }
+  for (int i = 0; i < 5; i++)
+  {
+    for (int j = 0; j < 5; j++)
+    {
+      printf("%d ", a[i][j]);
+    }
+    printf("\n");
+  }
+}
+//////////////////////////////////////////////////////////////////////////////////////
+// STRINGOVI //
+
+
 int main(){
-  zad03(3);
+  zad04(45371);
   return 0;
 }
