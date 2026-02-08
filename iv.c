@@ -216,7 +216,7 @@ void removeWhiteSpace(char *s){
   int j = 0;
   for (int i = 0; i < n; i++)
   {
-    if(s[i] != ' ' && s[i] != '\t'){
+    if(s[i] != ' ' && s[i] != '\t'){// s[i] = *(s + 1)
       s[j] = s[i];
       j++;
     }
@@ -230,7 +230,32 @@ void stringPrvi(){
   removeWhiteSpace(s);
   puts(s);
 }
+//6.Napisati program koji ucitava tekst i ispisuje sve njegove pod stringove
+void make_strings(char *s){
+  int n = strlen(s) - 1;
+  //i oznacava poziciju pocetka stringa
+  for (int i = 0; i < n; i++)
+  {
+    //j oznacava poziciju kraja stringa
+    for (int j = i; j < n; j++)
+    {
+      int pozicija = i;
+      while (pozicija <= j)
+      {
+        printf("%c", s[pozicija]);//ispisi taj karakter
+        pozicija++;
+      }
+      printf("\n");
+    }
+  }
+}
+void zad05(){
+  char s[100];
+  printf("Unesi te text:\n");
+  fgets(s,100,stdin);
+  make_strings(s);
+}
 int main(){
-  stringPrvi();
+  zad05();
   return 0;
 }
