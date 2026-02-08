@@ -255,7 +255,32 @@ void zad05(){
   fgets(s,100,stdin);
   make_strings(s);
 }
+//7.Svaki karakter treba da se pojavi 2 puta
+void dupliraj_slovo(char *s){
+  int n = strlen(s) - 1;
+  int brojac_mesta = 0;
+  char c[100];
+  for (int i = 0; i < n; i++)
+  {
+    int counter = 0;
+    while (counter < 2)
+    {
+     c[brojac_mesta] = s[i];
+     counter++;
+     brojac_mesta++;
+    }
+  }
+  c[brojac_mesta] = '\0';//nemoj da zaboravis da zatvoris string sa '\0' !!!
+  
+  puts(c);
+}
+void zad06(){
+  char s[100];
+  printf("Unesi te text:\n");
+  fgets(s, 100, stdin);
+  dupliraj_slovo(s);
+}
 int main(){
-  zad05();
+  zad06();
   return 0;
 }
