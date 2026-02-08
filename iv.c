@@ -181,9 +181,56 @@ void zad04(int n){
 }
 //////////////////////////////////////////////////////////////////////////////////////
 // STRINGOVI //
+/*
+1.NIZ KARAKTERA
+- ['A','N','A','\0']
+- na kraju svakog stringa ide '\0' (govori gde je kraj niza)
+- za brisanje dela stringa brojimo mesta i ispred dela koji zelimo da izbacimo
+stavimo '\0'
 
+2.DEKLARACIJA STRINGA (NIZA):
+- char text[100]
 
+3.PRISTUPANJE ELEMENTIMA STRINGA (NIZA):
+string[0]=> prvi element iz niza
+
+4.KORISTI SE BIBLIOTEKA:
+ <STRING.H>
+
+5.FUNKCIJE:
+ a) strlen(s) => broji elemente u stringu, broji i '\0', pa zato oduzmemo - 1
+
+ b) fgets(s, n, stdin)=> unos stringa
+     - s => nas string
+     - n => duzina stringa
+     - stdin => ulaz(tastatura)
+
+  v)puts(s)=>ispisivanje stringa
+*/
+//5.Napisati program koji ucitava text, uklanja mu razmake i ispisuje ga na konzolu
+#include <string.h>
+#define MAX 100
+
+void removeWhiteSpace(char *s){
+  int n = strlen(s) - 1;
+  int j = 0;
+  for (int i = 0; i < n; i++)
+  {
+    if(s[i] != ' ' && s[i] != '\t'){
+      s[j] = s[i];
+      j++;
+    }
+  }
+  s[j]='\0';
+}
+void stringPrvi(){
+  char s[MAX];
+  printf("Unesite neki tekst:");
+  fgets(s, MAX, stdin);
+  removeWhiteSpace(s);
+  puts(s);
+}
 int main(){
-  zad04(45371);
+  stringPrvi();
   return 0;
 }
