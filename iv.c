@@ -271,7 +271,6 @@ void dupliraj_slovo(char *s){
     }
   }
   c[brojac_mesta] = '\0';//nemoj da zaboravis da zatvoris string sa '\0' !!!
-  
   puts(c);
 }
 void zad06(){
@@ -280,7 +279,40 @@ void zad06(){
   fgets(s, 100, stdin);
   dupliraj_slovo(s);
 }
+//8.Napisati program koji ucitava dva texta
+//iz prvog text se izbaci sve ono sto je u drugom textu
+void pravljenjeTexta(char *text3, char *text2, char *text1){
+  int n1 = strlen(text1)-1;
+  int n2 = strlen(text2)-1;
+  int flag =1;
+  int counter=1;
+  for (int i = 0; i < n1; i++)
+  {
+    for (int j = 0; j < n2; j++)
+    {
+      if(text1[i] == text2[j]) flag = 0;
+    }
+    if(flag){
+      text3[counter]=text1[i];
+      counter++;
+    }else{
+      flag = 1;
+    }
+  }
+  text3[counter]='\0';
+  puts(text3);
+}
+void zad07(){
+  char text1[MAX];
+  char text2[MAX];
+  char text3[MAX];
+  printf("Unesi te text1:\n");
+  fgets(text1,MAX, stdin);
+  printf("Unesi te text2: \n");
+  fgets(text2,MAX,stdin);
+  pravljenjeTexta(text3,text2,text1);
+}
 int main(){
-  zad06();
+  zad07();
   return 0;
 }
