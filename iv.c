@@ -206,6 +206,15 @@ string[0]=> prvi element iz niza
      - stdin => ulaz(tastatura)
 
   v)puts(s)=>ispisivanje stringa
+  g)strtok(veliki text, granicnik)=> vraca sve pre granicnika, ne stavlja '\0'
+  d)strstr(text, mali text)=> Prazi pojavljivanje 1 str. unutar 2 stra. Ako ga ima vraca nej adrsu u suprotnom NULL
+  ð)strcat(str_u_koji_dodajemo, str_koji_se_dodaje);
+
+6.Znak za ispis stringa je %s
+printf("%s", text) => ovo je kao puts(text);
+
+7.Kroz nje ga mozemo da se krecemo putem adrese od nekog njegovog dela
+
 */
 //5.Napisati program koji ucitava text, uklanja mu razmake i ispisuje ga na konzolu
 #include <string.h>
@@ -312,7 +321,40 @@ void zad07(){
   fgets(text2,MAX,stdin);
   pravljenjeTexta(text3,text2,text1);
 }
+//9.Na osnovu unetog teksta izvuci reci koje se ponavljaju 2 puta
+
+void printRecurringWords(char *pocetni){//pocetni string
+  char krajni[100];//resenje 
+  krajni[0]='\0';//u pocetku je prazan string
+
+  //ovo je tehnika koja se zove tokenizacija, ili ti splitovanje
+  char *token;
+  token = strtok(pocetni," ");// za razmak nije ' ' nego je " "
+  //KAD NE BUDE MOGAO DA IZVLACI VISE TOK VRACA NULL
+  printf("%s", token);
+
+  while (token)//dokle god je token razlicit od NULL
+  {     //ako ne sadrzi token     //i ako ga ima u ostatku pocetnog str
+    if(!strstr(krajni, token) && strstr(token + strlen(token) + 1, token)){
+                                  //da bi dobili ostatak od pocetnog str
+                                  //pomeramo se putem memorijske adrese od tokena
+                                  //putem nje idemo kroz pocetni string
+                                  //pomeramo se od adrese tokena za broj njegovih elemenata 
+                                  //+ 1 to je granicnik u nasem sl.(" ")
+
+        strcat(krajni,token);//"Zelena" + "trava" => "Zelena trava"
+        strcat(krajni, " ");//KonKanTeNacija
+    }
+    token = strtok(NULL," ");
+    //ovako mu govorim da predje na sledecu rec
+    //ovako mu kazem da tokenizuje sledecu rec
+  }
+  puts(krajni);
+}
 int main(){
-  zad07();
+  char p[MAX];
+  fgets(p, MAX, stdin);
+
+  printRecurringWords(p);
   return 0;
 }
