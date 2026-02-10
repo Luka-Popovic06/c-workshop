@@ -207,7 +207,7 @@ string[0]=> prvi element iz niza
 
   v)puts(s)=>ispisivanje stringa
   g)strtok(veliki text, granicnik)=> vraca sve pre granicnika, ne stavlja '\0'
-  d)strstr(text, mali text)=> Prazi pojavljivanje 1 str. unutar 2 stra. Ako ga ima vraca nej adrsu u suprotnom NULL
+  d)strstr(text, mali text)=> Trazi pojavljivanje 1 str. unutar 2 stra. Ako ga ima vraca nej adrsu u suprotnom NULL
   ð)strcat(str_u_koji_dodajemo, str_koji_se_dodaje);
 
 6.Znak za ispis stringa je %s
@@ -335,6 +335,7 @@ void printRecurringWords(char *pocetni){//pocetni string
 
   while (token)//dokle god je token razlicit od NULL
   {     //ako ne sadrzi token     //i ako ga ima u ostatku pocetnog str
+   // strstr(krajni, token) ako vrati 0 ! ce ga pretvoriti u 1 i obrnuto
     if(!strstr(krajni, token) && strstr(token + strlen(token) + 1, token)){
                                   //da bi dobili ostatak od pocetnog str
                                   //pomeramo se putem memorijske adrese od tokena
@@ -351,10 +352,47 @@ void printRecurringWords(char *pocetni){//pocetni string
   }
   puts(krajni);
 }
-int main(){
-  char p[MAX];
-  fgets(p, MAX, stdin);
+/////////////////////////////////////////////////////////////////////////////////////
+/*                          //  STRUKTURA (STRUCT) //
+1.strcpy(s1.string, "Luka sdk")=> sluzi za unos texta u string
 
-  printRecurringWords(p);
+*/
+//Osnovna sintaksa:
+struct Student {
+  char ime[30];
+  int godine;
+  double prosek;
+};
+//Ovde si definisao šablon (tip podatka).
+void struDef(){
+  struct Student s1; //Kreiranje promenljive strukture
+  s1.godine = 21;
+  // (.) je operator pristupa
+  s1.prosek = 10.00;
+  strcpy(s1.ime,"Luka Popovic");//za ubacivanje strinag u neki drugi string
+  //printf("%d\n%.2lf\n%s ", s1.godine,s1.prosek,s1.ime);
+
+  struct Student king;//kreiromo novu promenljivu strukturu
+
+  king = s1;//ovako prenosimo informacije izmedju struktura 
+  printf("%d\n%.2lf\n%s\n", king.godine,king.prosek,king.ime);
+}
+/*10.Napisati program koji učitava širinu i visinu pravougaonika, formira strukturu 
+koja ga predstavlja, a zatim ispisuje površinu tog pravougaonika.*/
+struct Pravougaonik
+{
+  double sirina;
+  double visina;
+  double povrsina;
+};
+
+void zad10(){
+  struct Pravougaonik s1;
+  scanf("%lf %lf", &s1.sirina,&s1.visina);
+  s1.povrsina = s1.sirina * s1.visina;
+  printf("%.2lf\n%.2lf\n%.2lf\n", s1.sirina,s1.visina,s1.povrsina);
+}
+int main(){
+  zad10();
   return 0;
 }
