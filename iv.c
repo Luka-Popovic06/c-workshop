@@ -209,6 +209,8 @@ string[0]=> prvi element iz niza
   g)strtok(veliki text, granicnik)=> vraca sve pre granicnika, ne stavlja '\0'
   d)strstr(text, mali text)=> Trazi pojavljivanje 1 str. unutar 2 stra. Ako ga ima vraca nej adrsu u suprotnom NULL
   ð)strcat(str_u_koji_dodajemo, str_koji_se_dodaje);
+  e)atoi => ascii to  int (pretvara string u int(broj)) pr("123" => 123)
+  ž)strcpy(ime_naseg_stringa, "lol king johan") => ubacuje u nas string neku vrednost
 
 6.Znak za ispis stringa je %s
 printf("%s", text) => ovo je kao puts(text);
@@ -355,24 +357,24 @@ void printRecurringWords(char *pocetni){//pocetni string
 /////////////////////////////////////////////////////////////////////////////////////
 /*                          //  STRUKTURA (STRUCT) //
 1.strcpy(s1.string, "Luka sdk")=> sluzi za unos texta u string
-
+2.Inicijalizacija odmah: // struct Student s1 = {"Marko", 2, 9.5}; //
 */
 //Osnovna sintaksa:
-struct Student {
+struct Studen {
   char ime[30];
   int godine;
   double prosek;
 };
 //Ovde si definisao šablon (tip podatka).
 void struDef(){
-  struct Student s1; //Kreiranje promenljive strukture
+  struct Studen s1; //Kreiranje promenljive strukture
   s1.godine = 21;
   // (.) je operator pristupa
   s1.prosek = 10.00;
   strcpy(s1.ime,"Luka Popovic");//za ubacivanje strinag u neki drugi string
   //printf("%d\n%.2lf\n%s ", s1.godine,s1.prosek,s1.ime);
 
-  struct Student king;//kreiromo novu promenljivu strukturu
+  struct Studen king;//kreiromo novu promenljivu strukturu
 
   king = s1;//ovako prenosimo informacije izmedju struktura 
   printf("%d\n%.2lf\n%s\n", king.godine,king.prosek,king.ime);
@@ -392,7 +394,48 @@ void zad10(){
   s1.povrsina = s1.sirina * s1.visina;
   printf("%.2lf\n%.2lf\n%.2lf\n", s1.sirina,s1.visina,s1.povrsina);
 }
+////////////////////////////// Ugnježdene strukture /////////////////////////////////////////////////
+/*11.Napisati program koji učitava ime, prezime i adresu prebivališta za jednog studenta. 
+Adresa sadrži ime ulice i broj. Ispisati sve podatke o studentu.
+//typedef => da ne pišeš stalno struct
+*/
+ typedef struct Adresa
+ {
+   char imeUlice[90];
+   int broj;
+ }adresa;
+ 
+
+typedef struct Student {
+  char ime[50];
+  char prezime[50];
+  adresa adr;//!!!!
+}student;
+
+void zad11(){
+  student s1;
+  adresa a1;
+  printf("Unesite Ime studenta:\n");
+  fgets(s1.ime, 50, stdin);
+  s1.ime[strlen(s1.ime) - 1] = '\0';//ovo se stavlja zato sto, fgets() pokupi i '\n', ovako brisemo '\n'
+  printf("Unesite Prezime studenta\n");//kad pokupi '\n' on ga i ispise posel
+  fgets(s1.prezime, 50, stdin);
+  s1.prezime[strlen(s1.prezime) - 1] = '\0';
+  printf("Unesite Ime Ulice\n");
+  fgets(a1.imeUlice,90,stdin);
+  a1.imeUlice[strlen(a1.imeUlice) - 1] = '\0';
+  char br[40];
+  fgets(br, 40, stdin);
+  br[strlen(br)-1] = '\0';
+  a1.broj = atoi(br);
+
+  s1.adr = a1;//kopiranje struktura
+
+  printf("Ime i Prezime: %s %s\n", s1.ime, s1.prezime);
+  printf("Adresa i Broj: %s %d", s1.adr.imeUlice, s1.adr.broj);//!!!!!!
+}
+
 int main(){
-  zad10();
+  zad11();
   return 0;
 }
