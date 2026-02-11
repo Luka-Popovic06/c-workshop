@@ -533,9 +533,9 @@ void zad13(){
   while (fgets(red, 90, fpI) == red)//ovde se vrsi ucitavanjer red-a (ucitavanje iz fajla po defaultu ide red po red)
   {
     token = strtok(red," ");
-    strcopy(niz[pos].ime, token);//dodeljujemo vrednost polju iz struct-a
+    strcpy(niz[pos].ime, token);//dodeljujemo vrednost polju iz struct-a
     token = strtok(NULL," ");
-    strcopy(niz[pos].prezime, token);
+    strcpy(niz[pos].prezime, token);
     token = strtok(NULL," ");
     niz[pos++].tezina = atoi(token);//ovde povecavamo pos, ali tek u sledecoj liniji
   }
@@ -568,8 +568,50 @@ void zad13(){
     fprintf(fpO,"%s %s %d", niz[i].ime,niz[i].prezime,niz[i].tezina);
   }
   
-  
+  fclose(fpI);
+  fclose(fpO);
 }
+///////////////////////////// RAD SA LISTAMA //////////////////////////////////////////////////////
+/*
+-NIZ:
+int niz[100] => niz je staticka struktura, kolko mesta stavim tolko ce i biti
+niz[i] -> *(niz + i) => pristupanje elementu u nizu
+
+-LISTA:
+(To je struktura podataka gde su elementi povezani pokazivačima)
+1.Dinamicka struktura podataka!(ako imam 10 elemenata u listi ja nju mogu veoma lako da prosirim na vise elemenata)
+2.head -> e1 -> e2 -> ... -> en
+3.Moramo da zauzmemo odredjenu kolicinu memorije za svaki od elemenata
+
+4.malloc - zauzima prosledjenu kolicinu memorije
+5.calloc - zauzima prosledjenu kolicinu memorije; resetuje vrednosti na tim lokacijama na podrazumevane(0)
+6.realloc - zauzima memoriju; prosiruje/suzava blok memorije;
+moze izmestiti lokaciju memorijskog bloka koji je zauzet
+==> sve tri f-je vracaju pokazivac na pocetak memorijskog bloka, koji je zauzet
+odmostno daju nam prvu memorisku adresu.
+
+7. free - oslobadja memoriju i vraca je operativnom sistemu
+*/
+
+/*14.Deklarisati niz celih brojeva, dužine 10, pomoću dinamičke alokacije 
+memorije. Zatim proširiti niz za još 10 elemenata. Na kraju osloboditi 
+memoriju zauzetu nizom.
+*/
+void zad14(){
+  //u ovom primeru zauzimamo 40 byte memorije
+  int *array = malloc(10 * sizeof(int));//zauzmi mi 10 mesta za intidžere
+  //int *array = calloc(10, sizeof(int));//calloc resetuje vrednosti na podrazumevane
+  array[2] = 3;
+  printf("%d", array[2]);
+  
+  realloc(array, 20 * sizeof(int));
+  //argument 1. => koji niz sirimo
+  //argument 2. => na koju ga vrednost sirimo
+
+  free(array);//oslobadjam zauzet prostor
+}
+//15. Rad sa listama
+
 int main(){
   zad12();
   return 0;
