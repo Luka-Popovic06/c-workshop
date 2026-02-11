@@ -492,3 +492,85 @@ void zad12(){
   }
   fclose(fp);
 }
+/*13.Napisati program koji iz željenog tekstualnog fajla učitava podatke 
+o imenu, prezimenu i težini osobe i formira niz osoba. Potrebno je da se 
+ovaj niz sortira u neopadajućem poretku po teżini osoba i tako sortiran upiše 
+u novi tekstualni fajl.*/
+#define MAX_NIZ 100
+
+typedef struct{
+  char ime[90];
+  char prezime[90];
+  int tezina;
+}osoba;
+
+void swap2(osoba *a, osoba *b){
+  osoba tmp = *a;
+  *a = *b;
+  *b = tmp;
+}
+void zad13(){
+  char naziv[90];//naziv fajla
+  char red[90];//red u fajlu
+  char *token;// deo od reda
+
+  printf("Unesite ime fajla:\n");
+  fgets(naziv,90,stdin);
+  naziv[strlen(naziv) - 1] = '\0';
+
+  FILE* fpI = fopen(naziv, "r");//otvaramo fajl i pripremamo ga za citanje
+
+  if(fpI == NULL){
+    printf("Greska pri otvaranje fajla.\n");
+    fclose(fpI);
+    return;
+  }
+
+  osoba niz[MAX_NIZ];//pravimo niz od osoba
+
+  int pos = 0; //prati koliko sam osoba ucitao
+
+  while (fgets(red, 90, fpI) == red)//ovde se vrsi ucitavanjer red-a (ucitavanje iz fajla po defaultu ide red po red)
+  {
+    token = strtok(red," ");
+    strcopy(niz[pos].ime, token);//dodeljujemo vrednost polju iz struct-a
+    token = strtok(NULL," ");
+    strcopy(niz[pos].prezime, token);
+    token = strtok(NULL," ");
+    niz[pos++].tezina = atoi(token);//ovde povecavamo pos, ali tek u sledecoj liniji
+  }
+
+  int n = pos;
+
+  //sad radimo sortiranje niza
+  for (int i = 0; i < n; i++)
+  {
+    for (int j = i + 1; j < n; j++)
+    {
+      if(niz[i].tezina > niz[j].tezina){
+        swap2(&niz[i], &niz[j]);
+      }
+    }
+    
+  }
+  
+  //ovde radimo ispisivanje u fajl
+
+  printf("Unesite ime fajla za pisanje:\n");
+  fgets(naziv, 90, stdin);
+  naziv[strlen(naziv) - 1] = '\0';
+
+  FILE* fpO = fopen(naziv, "w");//Priprema fajla za pisanje
+
+  for (int i = 0; i < n; i++)
+  {
+  //fprintf() je funkcija u C-u koja služi za ispis formatiranog teksta u fajl
+    fprintf(fpO,"%s %s %d", niz[i].ime,niz[i].prezime,niz[i].tezina);
+  }
+  
+  
+}
+int main(){
+  zad12();
+  return 0;
+}
