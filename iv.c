@@ -434,8 +434,61 @@ void zad11(){
   printf("Ime i Prezime: %s %s\n", s1.ime, s1.prezime);
   printf("Adresa i Broj: %s %d", s1.adr.imeUlice, s1.adr.broj);//!!!!!!
 }
+///////////////////////////// Čitanje iz fajla //////////////////////////////////////////////////
+/*
+1.FILE* fopen(const char *ime_fajla, const char *mode);
+-ime_fajla => fajl koji otvaramo
+-mode => nacin na koji citamo fajl
+-FILE* => ovo je rezultat(kao rezultat dobijem pokazivac na fajl)
+2.Tipovi modova:
+ a) r - otvara fajl za citanje, (ako varati NULL => znaci nema fajla)
+ b) w - otvara fajl za pisanje (brise postojeci text)
+ v) a - otvara fajl za pisanje na kraj (ne brise postojeci text)
+ g) r+ - otvara faj za citanje i pisanje (ako ga nema ne pravi novi faj)
+ d) w+ - otvara fajl za citanje i pisanje (ako ga nema pravi nov)(brise ppostojeci text)
+ ð) a+ - otvara fajl za citanje i pisanje na kraju 
 
-int main(){
-  zad11();
-  return 0;
+3.fclose(fajl) => zatvara faj koji smo pre otvorili
+*/
+
+/*12.Napisati program koji iz navedenog tekstualnog fajla iščitava ime, 
+prezime i težinu osobe, a zatim te informacije ispisuje na konzolu.
+*/
+
+void zad12(){
+  char naziv[90];//ovde cuvamo ime naseg fajla
+  char red[90]; // ovde cuvamo jedan red koji procitamo
+  char *token;
+
+  printf("Unesite ime fajla:\n");
+  fgets(naziv, 90, stdin);
+  naziv[strlen(naziv) - 1]='\0';
+
+  // fopen(char *fname, char *mode)
+
+  FILE* fp = fopen(naziv,"r");//ovako pristupamo nekom fajlu
+
+  if(fp == NULL){
+    printf("Greska pri radu sa fajlom\n");
+    fclose(fp);//zatvaramo fajl
+    return;
+  }
+
+  //fgets(red, 90, fp);//ovako citamo fajl
+  while (fgets(red,90,fp) == red)
+  {
+    char ime[90];
+    char prezime[90];
+    int tezina;
+
+    token = strtok(red, " ");
+    strcpy(ime,token);
+    token = strtok(NULL, " ");//ovo znaci da od mesta gde si zavrsio nastavi dalje 
+    strcpy(prezime, token);
+    token = strtok(NULL," ");
+    tezina = atoi(token);
+
+    printf("%s %s %d\n", ime,prezime,tezina);
+  }
+  fclose(fp);
 }
