@@ -579,6 +579,7 @@ niz[i] -> *(niz + i) => pristupanje elementu u nizu
 
 -LISTA:
 (To je struktura podataka gde su elementi povezani pokazivačima)
+(elementi liste se nazivaju čvorovi "Node")
 1.Dinamicka struktura podataka!(ako imam 10 elemenata u listi ja nju mogu veoma lako da prosirim na vise elemenata)
 2.head -> e1 -> e2 -> ... -> en
 3.Moramo da zauzmemo odredjenu kolicinu memorije za svaki od elemenata
@@ -604,15 +605,151 @@ void zad14(){
   array[2] = 3;
   printf("%d", array[2]);
   
-  realloc(array, 20 * sizeof(int));
+  //realloc(array, 20 * sizeof(int));
   //argument 1. => koji niz sirimo
   //argument 2. => na koju ga vrednost sirimo
 
   free(array);//oslobadjam zauzet prostor
 }
+
 //15. Rad sa listama
 
+//1.Kreiramo Node(struct)
+//ovo mogu da pamtim kao kutiju
+typedef struct Node {//ovo se gleda kao tip neke promenljive ili f-je(kao sto smo imali int)
+  int data; //podatak
+  struct Node* next; //memorijska lokacija sledeceg njegovog elementa (sledbenika)
+}Node;
+
+//2.Pravimo f-ju za kreiranje Node-a
+Node* createNode(int data){
+  Node* new = malloc(sizeof(Node));//ovde dobijamo pokazivac na novi cvor
+  new -> data = data; //pristupamo njenim operatorima
+  new -> next = NULL; //ovo znaci da pokazivac ne pokazuje nigde
+
+  return new;
+}
+//3.Pravimo f-ju za dobijanje head-a (pocetne adrese)
+//vraca pokazivac na pocetak liste
+//dodaje elemente na pocetak liste, te ce nam rez biti obrnut od onog iz naseg fajla
+Node* insertFront(Node* head,int data){// Node*  se stavlja zato sto mi je potrebna adresa
+
+  Node* new = createNode(data);//kreiramo prost Node
+
+  new -> next = head;//setujemo mu vrednost na head(je prosli prvi clan, koji je sada postao drugi)
+
+  return new;//vracamo pokazivac na new
+}
+//4.Pravimo f-ju za dodavanje elemenata na kraj(redosled isti kao u nasem fajlu)
+Node* insertBack(Node* head, int data){
+  Node* new = createNode(data);
+  if(head == NULL) 
+    return new;
+
+  Node* tmp = head;
+  while (tmp -> next)//dokle god ne bude NULL ima da vrti petlju kako bi stigli do poslednjeg elementa
+  {
+    tmp = tmp -> next;
+  }
+  tmp -> next = new;//kazemo da je sledbenik od poslednjeg elementa new(novi koji sam napravio)
+
+  return head;
+
+}
+
+//5.Pravimo f-ju koja sortira niz
+Node* insertSort(Node* head, int data){
+  Node *new = createNode(data);
+
+  if(head == NULL){
+    return new;
+  }else if(head -> data >= new->data){
+    new->next = head;//ovde setujemo new da postane pre head
+    head = new;//ovde setujemo da je sad head == new
+  }else{
+    Node* tmp = head;
+    while (tmp->next && tmp->next->data < new->data)
+    {
+      tmp = tmp -> next;//5
+    }
+    // 1 -> 4 -> 5 -> new -> 9 -> 11 //new = 7
+    new -> next = tmp->next; //10
+    tmp->next = new;
+  }
+  return head;
+}
+
+//6.Printovanje liste:
+//5 -> 6 -> 7 -> 8 -> 9 -> NULL (svaki ima svog sledbenika osim poslednjeg(NULL))
+void printList(Node* head){
+  while (head)
+  {
+    printf("%d ", head -> data);//iz trenutnog pokazivaca printujemo datu
+    head = head -> next;//trenutni pokazivac pomeramo na sledeci -> next
+  }
+  printf("\n");
+}
+
+//7.Brisanje elementa u listi:
+Node* removeNode(Node* head, int data){
+  Node* prev = NULL;//predhodnik prvog elementa
+  Node* curr = head;//trenutni element
+
+  if(curr->data == data){//ovo je kada je prvi element
+    head=curr->next;
+    free(curr);
+    return head;//uvek vracamo head
+  }
+  //ovo stavljamo da ispadnemo iz opsega prvog
+  prev=curr;
+  curr = curr->next;
+  //Radimo while petlju da bi dosli do nekog el koji moze da se izbaci
+  while (curr && curr->data != data)
+  {
+    prev=curr;
+    curr=curr->next;
+  }
+  //ako je curr razlicit od NULL brisemo curr
+  if(curr){
+    prev->next = curr->next;
+    free(curr);
+  }
+
+  return head;
+}
+
+//8.brisanje cele liste:
+Node* deleteList(Node* head){
+  
+  while (head)
+  {
+    Node* tmp = head->next;
+    free(head);
+    head=tmp;
+  }
+
+  return NULL;
+}
+void zad15(){
+  Node* head = NULL;// signal da je lista prazna
+
+  FILE* fp = fopen("ulaz.txt","r");//1.arg. => putanja do fajla; 2.arg. => mod
+  if(fp == NULL){
+    printf("Greska!\n");
+    fclose(fp);
+    return;
+  }
+  int data;
+  
+  while (fscanf(fp,"%d", &data) > 0)//služi za čitanje podataka iz fajla.
+  //zgodno za ucitavanje liniju po liniju iz fajla
+  {
+    head = insertSort(head,data);
+  }
+  printList(head);
+}
+
 int main(){
-  zad12();
+  zad15();
   return 0;
 }
