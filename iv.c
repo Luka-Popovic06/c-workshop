@@ -436,7 +436,7 @@ void zad11(){
 }
 ///////////////////////////// Čitanje iz fajla //////////////////////////////////////////////////
 /*
-1.FILE* fopen(const char *ime_fajla, const char *mode);
+1.FILE* fopen(char *ime_fajla,char *mode);
 -ime_fajla => fajl koji otvaramo
 -mode => nacin na koji citamo fajl
 -FILE* => ovo je rezultat(kao rezultat dobijem pokazivac na fajl)
@@ -658,7 +658,7 @@ Node* insertBack(Node* head, int data){
 }
 
 //5.Pravimo f-ju koja sortira niz
-Node* insertSort(Node* head, int data){
+Node* insertSorted(Node* head, int data){
   Node *new = createNode(data);
 
   if(head == NULL){
@@ -668,6 +668,7 @@ Node* insertSort(Node* head, int data){
     head = new;//ovde setujemo da je sad head == new
   }else{
     Node* tmp = head;
+        //ovo stavljamo zbog NULL slucaja
     while (tmp->next && tmp->next->data < new->data)
     {
       tmp = tmp -> next;//5
@@ -720,7 +721,7 @@ Node* removeNode(Node* head, int data){
 
 //8.brisanje cele liste:
 Node* deleteList(Node* head){
-  
+
   while (head)
   {
     Node* tmp = head->next;
@@ -749,7 +750,172 @@ void zad15(){
   printList(head);
 }
 
+////////////////////////////  BINARNO STABLO PRETRAGE  //////////////////////////////////////////////////////
+//KAD GOD KORISTIMO Node* uvek ide pokazivac na njega(*)
+//Kad kreiramo "new"; on je uvek pokazivac na strukturu i zato uvek koristimo new->
+//1.Definisemo čvor (Node):
+typedef struct Node2{
+  int data;
+  struct Node2* left;
+  struct Node2* right;
+}Node2;
+
+//2.Pravimo f-ju za kreiranje čvora (Node-a):
+//(f-ja uvek vraca new ili u drugim slucajevima nesto drugo(root))
+Node2* createNode2(int data){
+  Node2* new = calloc(1, sizeof(Node2));// 1.koliko mesta; 2.koliko memorije
+  new->data = data;
+  return new;
+}
+//ubacivanje cvora Node-a:
+//f-ja mora da bude rekurzivna;
+Node2* insertNodeR(Node2* root, int data){
+  //root == null
+  if(root == NULL){
+    return createNode2(data);
+  }else if(root->data > data){
+    //( "root->left = "")ovo se pise zato sto saljemo adresu a ne (adresu adrese ---> org)
+    root->left = insertNodeR(root->left,data);
+  }else{
+    root->right= insertNodeR(root->right,data);
+  }
+
+  return root;
+}
+//Prolazak kroz stablo:
+
+//1.Inorder (// sortira //) ( LPS, ROOT , DPS ):
+void inorder(Node2* root){
+  if (root == NULL) return;
+
+  inorder(root->left);//idemo u levo pod stablo (LPS)
+
+  printf("%d ", root->data);//(ROOT)
+  
+  inorder(root->right);//idemo u desnu str.(DPS)
+}
+//2.Preorder(ROOT -> LPS -> DPS): //Ispisuje koren na pocetku
+void preorder(Node2* root){
+  if(root == NULL) return;
+
+  printf("%d ", root->data);//(ROOT)
+  preorder(root->left);//(LPS)
+  preorder(root->right);//(DPS)
+}
+//3.Postorder(LPS -> DPS ->ROOT): //Ispisuje koren na kraju
+void postorder(Node2* root){
+  if(root == NULL) return;
+
+  postorder(root->left);
+  postorder(root->right);
+  printf("%d ",root->data);
+}
+
+//Dvostruki pokazivac (Double Pointer): // Pokazivac na pokazivac
+//Šalje orginal
+void insertNodeDPR(Node2** root, int data){
+  if(*root == NULL) {
+    *root = createNode2(data);
+    return;
+  }
+  if(data < (*root)->data ){
+    //nemora da mi vraca nista zato sto prosledjujem direktno adresu
+    insertNodeDPR(&(*root)->left,data);
+  }else{
+    insertNodeDPR(&(*root)->right,data);
+  }
+  
+}
+//Trazenje Node-a:
+//ovde se samo vraca pokazivac na cvor
+Node2* findNodeR(Node2* root,int data){
+  if(root == NULL)
+   return NULL;
+
+  if(root->data == data)
+   return root;
+
+  if(root->data > data){
+    return findNodeR(root->left,data);
+  }else{
+    return findNodeR(root->right,data);
+  }
+}
+//Trazim cvor Node koji je minimum:
+//Levo su svi manji; Desno su svi veci;
+Node2* findNodeMin(Node2* root){
+
+  while (root->left)
+  {
+    root = root->left;
+  }
+  return root;
+}
+//Trazenje Najveceg Node-a:
+Node2* findNodeMax(Node2* root){
+  while (root->right)
+  {
+    root = root->right;
+  }
+  
+  return root;
+}
+//Brisanje Node-a (DOUBLE POINTER)
+void deleteNodeDPR(Node2** root,int data){
+  if(*root == NULL) 
+    return;
+
+  if((*root)->data == data){//iste; jednaki su
+    Node2* tmp;
+    //ako nema levog deteta:(to znaci da ima desni)
+    if ((*root)->left == NULL){//nema levi; ima desni
+      tmp = (*root)->right;//tmp pamti sledeceg sa desne str
+      free(*root);//oslobadjamo memoriju od root-a (odkacinjemo root)
+      *root = tmp;//spajamo prosli sa sadasnjim root-om
+    }else if((*root)->right == NULL){//nema desni; ima levi
+      tmp= (*root)->left;
+      free(*root);
+      *root = tmp;
+    }else{//ima oba potomka
+      tmp = findNodeMin((*root)->right);//moram da se spustim u desno pod stablo i u njemu da nadjem minimum
+      (*root)->data = tmp->data;
+      deleteNodeDPR(&(*root)->right,tmp);
+    }
+    //1.prvo svodim na listove(njih da obrisem)
+    //2.potom rdim opsti slucaj koji sluzi za kretanje
+    //desno - levo u fulu
+    //zamenimo mesta nasem centralnom i potom brisemo list
+
+  }else if((*root)->data > data){//left
+    deleteNodeDPR(&(*root)->left, data);
+  }else{//right
+    deleteNodeDPR(&(*root)->right, data);
+  }
+}
+void zad16(){
+  Node2* bst = NULL;//pocetak stabla //adresa root-a
+  int n;
+  int data;
+  printf("Unesite br el. u stablu:\n");
+  scanf("%d", &n);
+
+  for (int i = 0; i < n; i++)
+  {
+    printf("Unesite %d. element:\n", i+1);
+    scanf("%d",&data);
+
+    //bst = stavljamo zato da bi mogli da vidimo promenu spolah; da to nismo stavili promena ne bi bila vidljiva;
+    insertNodeR(&bst,data);//ovde saljemo adresu adrese root-a
+  }
+  inorder(bst);
+  printf("\n");
+  preorder(bst);
+  printf("\n");
+  postorder(bst);
+  printf("\n");
+}
+//kada napisemo 
 int main(){
-  zad15();
+  zad16();
   return 0;
 }
